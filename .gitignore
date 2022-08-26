@@ -16,5 +16,6 @@ api-docs/
 _site/
 
 # Ignore Contentful config keys
+.env
 
 .DS_Store
