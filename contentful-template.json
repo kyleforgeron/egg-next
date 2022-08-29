@@ -2929,63 +2929,6 @@
       }
     }
   ],
-  "webhooks": [
-    {
-      "name": "Netlify - Deploy a site",
-      "url": "https://api.netlify.com/build_hooks/6303c5966942f80881d25982",
-      "httpBasicUsername": null,
-      "topics": [
-        "Entry.publish",
-        "Asset.publish",
-        "Entry.unpublish",
-        "Asset.unpublish"
-      ],
-      "filters": [
-        {
-          "equals": [
-            {
-              "doc": "sys.environment.sys.id"
-            },
-            "master"
-          ]
-        }
-      ],
-      "transformation": {
-        "contentType": "application/json"
-      },
-      "active": true,
-      "sys": {
-        "type": "WebhookDefinition",
-        "id": "0rObDAAcheLY2K5KGAhLC4",
-        "version": 0,
-        "space": {
-          "sys": {
-            "type": "Link",
-            "linkType": "Space",
-            "id": "i9f29i2wxzkl"
-          }
-        },
-        "createdBy": {
-          "sys": {
-            "type": "Link",
-            "linkType": "User",
-            "id": "4ZUeVGNLIHNRlWm8fAXyjT"
-          }
-        },
-        "createdAt": "2022-08-22T18:06:24Z",
-        "updatedBy": {
-          "sys": {
-            "type": "Link",
-            "linkType": "User",
-            "id": "4ZUeVGNLIHNRlWm8fAXyjT"
-          }
-        },
-        "updatedAt": "2022-08-22T18:06:24Z"
-      },
-      "headers": [
-      ]
-    }
-  ],
   "roles": [
     {
       "name": "Editor",
