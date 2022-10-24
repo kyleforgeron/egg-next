@@ -1,0 +1,20 @@
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import parse from 'html-react-parser';
+import { richTextOptions } from 'utils';
+
+const FooterBlock = ({ footerBlock }) => {
+  const content = parse(
+    documentToHtmlString(footerBlock.fields.content, richTextOptions)
+  );
+  return (
+    <section id="footer">
+      <div className="inner">
+        <div className="copyright">
+          {content}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default FooterBlock;
