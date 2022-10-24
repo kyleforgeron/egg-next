@@ -38,3 +38,24 @@ a {
 .nav-links {
   margin: 0 32px;
 }
+
+.search {
+  display: inline;
+  margin-right: 16px;
+
+  &-bar {
+    border: 1px solid $color-primary;
+    border-radius: 16px;
+    padding: 4px 16px;
+  }
+
+  &-button {
+    border: 1px solid $color-primary;
+    border-radius: 50%;
+    background-color: $color-primary;;
+    color: $color-white;
+    padding: 4px;
+    margin-left: 4px;
+    cursor: pointer;
+  }
+}
