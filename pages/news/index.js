@@ -14,7 +14,7 @@ const News = ({ results, pages, siteIdentity }) => {
       <NavBar {...{ pages, siteIdentity }} />
       <header className="banner-base">
         <h1 className="banner-title">
-          Today's Top Stories from the New York Times
+          Today&apos;s Top Stories from the New York Times
         </h1>
       </header>
       <section className="inner">

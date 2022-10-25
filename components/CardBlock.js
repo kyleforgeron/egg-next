@@ -14,6 +14,7 @@ const CardBlock = ({ cardBlock, cards, filteredCards, onCardSubmit }) => {
           src={`https:${card.fields.image.fields.file.url}`}
           height={card.fields.image.fields.file.details.image.height}
           width={card.fields.image.fields.file.details.image.width}
+          alt={card.fields.sectionTitle}
         />
       </span>
       <h3 className="major">{card.fields.sectionTitle}</h3>

@@ -9,7 +9,7 @@ const Results = ({ query, results, pages, siteIdentity }) => {
   return (
     <>
       <Head>
-        <title>Triad x Next.js - search for '{query}'</title>
+        <title>Triad x Next.js - search for &apos;{query}&apos;</title>
       </Head>
       <NavBar {...{ pages, siteIdentity }} />
       <header className="banner-base">

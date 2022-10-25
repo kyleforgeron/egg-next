@@ -15,7 +15,7 @@ const FeaturetteBlock = ({ featuretteBlock }) => {
       } className="wrapper spotlight style1">
         <div className="inner">
             <a href="#" className="image">
-              <Image src={featuretteBlock.fields.image} />
+              <Image src={featuretteBlock.fields.image} alt={featuretteBlock.fields.sectionTitle} />
             </a>
             <div className="content">
               <h2 className="major">
@@ -33,7 +33,7 @@ const FeaturetteBlock = ({ featuretteBlock }) => {
       }" className="wrapper alt spotlight style2">
         <div className="inner">
             <a href="#" className="image">
-              <Image src={featuretteBlock.fields.image} />
+              <Image src={featuretteBlock.fields.image} alt={featuretteBlock.fields.sectionTitle} />
             </a>
             <div className="content">
               <h2 className="major">
