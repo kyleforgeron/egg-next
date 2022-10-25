@@ -15,6 +15,11 @@ const BannerBlock = ({ bannerBlock }) => {
       }`}
       style={{ backgroundImage: `url('${bannerBlock.fields.background?.fields.file.url}')`}}
     >
+      {!!bannerBlock.fields.background && (
+        <video id="background-video" className="background-video" autoPlay loop muted>
+          <source src={bannerBlock.fields.background?.fields.file.url} type="video/mp4" />
+        </video>
+      )}
       <h1 className="banner-title">{bannerBlock.fields.sectionTitle}</h1>
       <div className="banner-content">
         {content}
