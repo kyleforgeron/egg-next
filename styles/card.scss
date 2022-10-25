@@ -3,6 +3,7 @@
 	display: -webkit-flex;
 	display: -ms-flex;
 	display: flex;
+	flex-direction: row;
 	-moz-flex-wrap: wrap;
 	-webkit-flex-wrap: wrap;
 	-ms-flex-wrap: wrap;
@@ -12,24 +13,23 @@
 
 	.card article {
 		padding: 1.75em 1.75em 0.1em 1.75em ;
-		box-shadow: 2px 4px 16px 0;
+		box-shadow: 2px 2px 6px 0;
 		border-radius: 5px;
 		margin: 1.5em 3em 1.5em 0;
-		width: calc(50% - 1.5em);
+		width: 22%;
 	}
 
-		.card article:nth-child(2n) {
+		.card article:nth-child(3n) {
 			margin-right: 0;
 		}
 
 		.card article .image {
-			border-radius: 5px 5px 0 0;
-			display: block;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 			margin-bottom: 1.75em;
-			margin-left: -1.75em;
-			margin-top: -1.75em;
 			position: relative;
-			width: calc(100% + 3.5em);
+			width: 100%;
 		}
 
 			.card article .image img {

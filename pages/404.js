@@ -1,10 +1,15 @@
+import PropTypes from 'prop-types';
 import { fetchEntries } from "utils";
 import Link from "next/link";
+import Head from "next/head";
 import { NavBar } from "components";
 
-export default function NotFound({ pages, siteIdentity }) {
+const NotFound = ({ pages, siteIdentity }) => {
   return (
     <>
+      <Head>
+        <title>Triad x Next.js - Page not found</title>
+      </Head>
       <NavBar {...{ pages, siteIdentity }} />
       <div className="page-wrapper">
         <section className="banner-base">
@@ -27,3 +32,14 @@ export async function getStaticProps() {
     },
   };
 }
+
+NotFound.defaultProps = {
+  cards: [],
+};
+
+NotFound.propTypes = {
+  pages: PropTypes.array.isRequired,
+  siteIdentity: PropTypes.array.isRequired,
+};
+
+export default NotFound;

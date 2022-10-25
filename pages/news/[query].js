@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from 'prop-types';
+import Head from "next/head";
 import { nytSearch } from "pages/api";
 import { fetchEntries } from "utils";
 import { NavBar } from "components";
@@ -6,6 +8,9 @@ import { NavBar } from "components";
 const Results = ({ query, results, pages, siteIdentity }) => {
   return (
     <>
+      <Head>
+        <title>Triad x Next.js - search for &apos;{query}&apos;</title>
+      </Head>
       <NavBar {...{ pages, siteIdentity }} />
       <header className="banner-base">
         <h1 className="banner-title">New York Times Results</h1>
@@ -41,5 +46,16 @@ export async function getServerSideProps({ params }) {
     },
   };
 }
+
+Results.defaultProps = {
+  results: [],
+};
+
+Results.propTypes = {
+  query: PropTypes.string.isRequired,
+  pages: PropTypes.array.isRequired,
+  siteIdentity: PropTypes.array.isRequired,
+  results: PropTypes.array,
+};
 
 export default Results;

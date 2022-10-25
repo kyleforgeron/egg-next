@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Head from 'next/head';
 import 'styles/main.scss';
 
@@ -5,7 +6,7 @@ const MyApp = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
-        <title>Triad Template - Next.js</title>
+        <title>Triad x Next.js</title>
         <meta
           name="description"
           content="Triad Template using Next.js for SSG and SSR"
@@ -22,6 +23,15 @@ const MyApp = ({ Component, pageProps }) => {
       </div>
     </>
   );
+};
+
+MyApp.defaultProps = {
+  pageProps: {},
+};
+
+MyApp.propTypes = {
+  Component: PropTypes.func.isRequired,
+  pageProps: PropTypes.object,
 };
 
 export default MyApp;

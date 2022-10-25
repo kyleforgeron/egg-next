@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from 'prop-types';
+import Head from "next/head";
 import { nytHandler } from "pages/api";
 import { fetchEntries } from "utils";
 import { NavBar } from "components";
@@ -6,10 +8,13 @@ import { NavBar } from "components";
 const News = ({ results, pages, siteIdentity }) => {
   return (
     <>
+      <Head>
+        <title>Triad x Next.js - Top Stories</title>
+      </Head>
       <NavBar {...{ pages, siteIdentity }} />
       <header className="banner-base">
         <h1 className="banner-title">
-          Today's Top Stories from the New York Times
+          Today&apos;s Top Stories from the New York Times
         </h1>
       </header>
       <section className="inner">
@@ -41,5 +46,15 @@ export async function getStaticProps() {
     },
   };
 }
+
+News.defaultProps = {
+  results: [],
+};
+
+News.propTypes = {
+  pages: PropTypes.array.isRequired,
+  siteIdentity: PropTypes.array.isRequired,
+  results: PropTypes.array,
+};
 
 export default News;

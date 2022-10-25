@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import parse from 'html-react-parser';
 import { richTextOptions } from 'utils';
@@ -20,6 +21,10 @@ const BannerBlock = ({ bannerBlock }) => {
       </div>
     </header>
   );
+};
+
+BannerBlock.propTypes = {
+  bannerBlock: PropTypes.object.isRequired,
 };
 
 export default BannerBlock;
