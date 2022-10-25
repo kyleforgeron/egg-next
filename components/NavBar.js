@@ -1,15 +1,10 @@
-import React, { useState } from "react";
-import { useRouter } from "next/router";
+import React from "react";
+import PropTypes from 'prop-types';
 import Link from "next/link";
 import Image from "next/image";
+import SearchBar from "./SearchBar";
 
 const NavBar = ({ pages, siteIdentity }) => {
-  const [query, setQuery] = useState("");
-  const router = useRouter();
-  const onSubmit = (e) => {
-    e.preventDefault();
-    router.push(`/news/${query}`);
-  };
   return (
     <header>
       <nav className="main-nav">
@@ -28,15 +23,7 @@ const NavBar = ({ pages, siteIdentity }) => {
         </Link>
         <h2 className="brand-name">{siteIdentity[0].fields.brandName}</h2>
         <span className="nav-links">
-          <form className="search" {...{ onSubmit }}>
-            <input
-              type="text"
-              placeholder="Search news articles"
-              onChange={(e) => setQuery(e.target.value)}
-              className="search-bar"
-            />
-            <input type="submit" value="Go" className="search-button" />
-          </form>
+          <SearchBar />
           <Link href="/news" className="page-link">
             Top Stories
           </Link>
@@ -56,6 +43,11 @@ const NavBar = ({ pages, siteIdentity }) => {
       </nav>
     </header>
   );
+};
+
+NavBar.propTypes = {
+  pages: PropTypes.array.isRequired,
+  siteIdentity: PropTypes.array.isRequired,
 };
 
 export default NavBar;

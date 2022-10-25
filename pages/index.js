@@ -1,12 +1,28 @@
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { fetchEntries } from 'utils';
 import { toKebabCase, getComponent } from 'utils';
 import { NavBar } from 'components';
 
-export default function Home({ pages, siteIdentity, page, cards }) {
+const Home = ({ pages, siteIdentity, page, cards }) => {
+  const [filteredCards, setFilteredCards] = useState(null);
+  const onCardSubmit = (e, query) => {
+    e.preventDefault();
+    if (!query) return setFilteredCards(null);
+    const filteredList = cards.filter(
+      card => {
+        if (card.fields.sectionTitle.toLowerCase().indexOf(query.toLowerCase()) > -1) return true;
+        if (card.fields.content.content[0].content[0].value.indexOf(query.toLowerCase()) > -1) return true;
+        if (card.metadata.tags.find(tag => tag.sys.id.indexOf(query.toLowerCase()) > -1)) return true;
+        return false;
+      }
+    );
+    setFilteredCards(filteredList);
+  };
   return (
     <>
       <NavBar {...{ pages, siteIdentity }} />
-      {page[0].components.map(item => getComponent(item, cards))}
+      {page[0].components.map(item => getComponent(item, cards, filteredCards, onCardSubmit))}
     </>
   );
 }
@@ -28,3 +44,16 @@ export async function getStaticProps() {
     },
   };
 }
+
+Home.defaultProps = {
+  cards: [],
+};
+
+Home.propTypes = {
+  pages: PropTypes.array.isRequired,
+  siteIdentity: PropTypes.array.isRequired,
+  page: PropTypes.array.isRequired,
+  cards: PropTypes.array,
+};
+
+export default Home;

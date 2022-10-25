@@ -1,10 +1,10 @@
 @import './theme.scss';
 
 .banner-base {
-	color: $color-primary;
+	color: $color-black;
 	margin: 0 auto;
 	margin-top: 60px;
-	width: 600px;
+	width: 800px;
 	height: auto;
 	display: flex;
 	flex-direction: column;
@@ -20,6 +20,15 @@
 		background-position: center center;
 		align-items: center;
 		justify-content: center;
+
+		> .banner-title {
+			max-width: 840px;
+			text-align: center;
+		}
+		> .banner-content {
+			max-width: 840px;
+			text-align: center;
+		}
 	}
 }
 
