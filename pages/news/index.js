@@ -1,25 +1,25 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
-import Head from "next/head";
-import { nytHandler } from "pages/api";
-import { fetchEntries } from "utils";
-import { NavBar } from "components";
+import { nytHandler } from 'pages/api';
+import { fetchEntries } from 'utils';
+import { Layout } from 'components';
+import style from 'components/BannerBlock/BannerBlock.module.scss';
 
 const News = ({ results, pages, siteIdentity }) => {
   return (
     <>
-      <Head>
-        <title>Triad x Next.js - Top Stories</title>
-      </Head>
-      <NavBar {...{ pages, siteIdentity }} />
-      <header className="banner-base">
-        <h1 className="banner-title">
+      <Layout
+        title="Triad x Next.js - Top Stories"
+        {...{ pages, siteIdentity }}
+      />
+      <header className={style["banner-base"]}>
+        <h1 className={style["banner-title"]}>
           Today&apos;s Top Stories from the New York Times
         </h1>
       </header>
       <section className="inner">
         <ul>
-          {results.map((article) => (
+          {results.map(article => (
             <li key={article.uri}>
               <a href={article.url} target="_blank" rel="noopener noreferrer">
                 {article.title}
@@ -32,11 +32,11 @@ const News = ({ results, pages, siteIdentity }) => {
   );
 };
 
-export async function getStaticProps() {
+export const getStaticProps = async () => {
   const URL = `https://api.nytimes.com/svc/topstories/v2/home.json?api-key=${process.env.NYT_KEY}`;
   const results = await nytHandler(URL);
-  const pages = await fetchEntries({ content_type: "page" });
-  const siteIdentity = await fetchEntries({ content_type: "siteIdentity" });
+  const pages = await fetchEntries({ content_type: 'page' });
+  const siteIdentity = await fetchEntries({ content_type: 'siteIdentity' });
 
   return {
     props: {
@@ -45,7 +45,7 @@ export async function getStaticProps() {
       siteIdentity,
     },
   };
-}
+};
 
 News.defaultProps = {
   results: [],

@@ -11,7 +11,7 @@ const MyApp = ({ Component, pageProps }) => {
           name="description"
           content="Triad Template using Next.js for SSG and SSR"
         />
-        <link rel="icon" type="image/png" href={"images/favicon.png"} />
+        <link rel="icon" type="image/png" href={'images/favicon.png'} />
         <meta charSet="utf-8" />
         <meta
           name="viewport"

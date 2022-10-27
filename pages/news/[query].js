@@ -1,24 +1,26 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
-import Head from "next/head";
-import { nytSearch } from "pages/api";
-import { fetchEntries } from "utils";
-import { NavBar } from "components";
+import { nytSearch } from 'pages/api';
+import { fetchEntries } from 'utils';
+import { Layout } from 'components';
+import style from 'components/BannerBlock/BannerBlock.module.scss';
 
 const Results = ({ query, results, pages, siteIdentity }) => {
   return (
     <>
-      <Head>
-        <title>Triad x Next.js - search for &apos;{query}&apos;</title>
-      </Head>
-      <NavBar {...{ pages, siteIdentity }} />
-      <header className="banner-base">
-        <h1 className="banner-title">New York Times Results</h1>
-        <h3 className="major">for search term <i>{query}</i></h3>
+      <Layout
+        title={`Triad x Next.js - search for &apos;${query}&apos;`}
+        {...{ pages, siteIdentity }}
+      />
+      <header className={style["banner-base"]}>
+        <h1 className={style["banner-title"]}>New York Times Results</h1>
+        <h3>
+          for search term <i>{query}</i>
+        </h3>
       </header>
       <section className="inner">
         <ul>
-          {results.map((article) => (
+          {results.map(article => (
             <li key={article.uri}>
               <a href={article.url} target="_blank" rel="noopener noreferrer">
                 {article.title}
@@ -31,11 +33,11 @@ const Results = ({ query, results, pages, siteIdentity }) => {
   );
 };
 
-export async function getServerSideProps({ params }) {
+export const getServerSideProps = async ({ params }) => {
   const URL = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${params.query}&api-key=${process.env.NYT_KEY}`;
   const results = await nytSearch(URL);
-  const pages = await fetchEntries({ content_type: "page" });
-  const siteIdentity = await fetchEntries({ content_type: "siteIdentity" });
+  const pages = await fetchEntries({ content_type: 'page' });
+  const siteIdentity = await fetchEntries({ content_type: 'siteIdentity' });
 
   return {
     props: {
@@ -45,7 +47,7 @@ export async function getServerSideProps({ params }) {
       siteIdentity,
     },
   };
-}
+};
 
 Results.defaultProps = {
   results: [],

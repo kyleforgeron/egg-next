@@ -1,9 +1,9 @@
-export async function nytHandler(url) {
+export const nytHandler = async url => {
   const response = await fetch(url).then(res => res.json());
   return response.results;
 };
 
-export async function nytSearch(url) {
+export const nytSearch = async url => {
   const response = await fetch(url).then(res => res.json());
   const docs = response.response.docs ?? [];
   const results = docs.map(doc => ({
@@ -12,4 +12,4 @@ export async function nytSearch(url) {
     uri: doc.uri,
   }));
   return results;
-}
+};

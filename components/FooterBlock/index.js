@@ -5,14 +5,12 @@ import { richTextOptions } from 'utils';
 
 const FooterBlock = ({ footerBlock }) => {
   const content = parse(
-    documentToHtmlString(footerBlock.fields.content, richTextOptions)
+    documentToHtmlString(footerBlock.fields.content, richTextOptions),
   );
   return (
     <section id="footer">
       <div className="inner">
-        <div className="copyright">
-          {content}
-        </div>
+        <div>{content}</div>
       </div>
     </section>
   );
