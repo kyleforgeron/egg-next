@@ -1,29 +1,28 @@
 import PropTypes from 'prop-types';
-import { fetchEntries } from "utils";
-import Link from "next/link";
-import Head from "next/head";
-import { NavBar } from "components";
+import { fetchEntries } from 'utils';
+import Link from 'next/link';
+import { Layout } from 'components';
 
 const NotFound = ({ pages, siteIdentity }) => {
   return (
     <>
-      <Head>
-        <title>Triad x Next.js - Page not found</title>
-      </Head>
-      <NavBar {...{ pages, siteIdentity }} />
+      <Layout
+        title="Triad x Next.js - Page not found"
+        {...{ pages, siteIdentity }}
+      />
       <div className="page-wrapper">
-        <section className="banner-base">
+        <section className="inner">
           <h1>{`We're sorry, that page could not be found.`}</h1>
           <Link href="/">Return home</Link>
         </section>
       </div>
     </>
   );
-}
+};
 
-export async function getStaticProps() {
-  const pages = await fetchEntries({ content_type: "page" });
-  const siteIdentity = await fetchEntries({ content_type: "siteIdentity" });
+export const getStaticProps = async () => {
+  const pages = await fetchEntries({ content_type: 'page' });
+  const siteIdentity = await fetchEntries({ content_type: 'siteIdentity' });
 
   return {
     props: {
@@ -31,7 +30,7 @@ export async function getStaticProps() {
       siteIdentity,
     },
   };
-}
+};
 
 NotFound.defaultProps = {
   cards: [],
