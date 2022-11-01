@@ -7,7 +7,7 @@ const NotFound = ({ pages, siteIdentity }) => {
   return (
     <>
       <Layout
-        title="Triad x Next.js - Page not found"
+        title="Educators Going Global - Page not found"
         {...{ pages, siteIdentity }}
       />
       <div className="page-wrapper">

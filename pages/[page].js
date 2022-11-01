@@ -7,7 +7,7 @@ const Page = ({ pages, siteIdentity, page, cards }) => {
   return (
     <>
       <Layout
-        title={`Triad x Next.js - ${page[0].title}`}
+        title={`Educators Going Global - ${page[0].title}`}
         {...{ pages, siteIdentity }}
       />
       {page[0].components.map(item => getComponent(item, cards))}

@@ -32,7 +32,7 @@ const Home = ({ pages, siteIdentity, page, cards }) => {
   };
   return (
     <>
-      <Layout title="Triad x Next.js" {...{ pages, siteIdentity }} />
+      <Layout title="Educators Going Global" {...{ pages, siteIdentity }} />
       {page[0].components.map(item =>
         getComponent(item, cards, filteredCards, onCardSubmit),
       )}

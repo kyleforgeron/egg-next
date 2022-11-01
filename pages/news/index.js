@@ -9,7 +9,7 @@ const News = ({ results, pages, siteIdentity }) => {
   return (
     <>
       <Layout
-        title="Triad x Next.js - Top Stories"
+        title="Educators Going Global - Top Stories"
         {...{ pages, siteIdentity }}
       />
       <header className={style["banner-base"]}>
