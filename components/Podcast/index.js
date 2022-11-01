@@ -1,14 +1,17 @@
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import parse from 'html-react-parser';
 import { richTextOptions } from 'utils';
 import Image from 'next/image';
+import Script from 'next/script';
 import style from './Podcast.module.scss';
 
 const Podcast = ({ featuretteBlock }) => {
   const content = parse(
     documentToHtmlString(featuretteBlock.fields.description, richTextOptions),
   );
+  console.log("Podcast", featuretteBlock.fields.episodeSrc, featuretteBlock.fields.episodeId);
   return (
     <div className={style['podcast']}>
       <h3 className={style['podcast-title']}>{featuretteBlock.fields.title}</h3>
@@ -21,17 +24,19 @@ const Podcast = ({ featuretteBlock }) => {
         })}
       >
         <Image
-          src={featuretteBlock.fields.image}
-          alt={featuretteBlock.fields.title}
+          src={`https:${featuretteBlock.fields.image.fields.file.url}`}
+          height={featuretteBlock.fields.image.fields.file.details.image.height}
+          width={featuretteBlock.fields.image.fields.file.details.image.width}
+          alt={featuretteBlock.fields.sectionTitle}
         />
       </a>
       <div id={`buzzsprout-player-${featuretteBlock.fields.episodeId}`} />
-      <script
+      <Script
         src={featuretteBlock.fields.episodeSrc}
         type="text/javascript"
         charset="utf-8"
       />
-      <p className={style['podcast-description']}>{content}</p>
+      <div className={style['podcast-description']}>{content}</div>
     </div>
   );
 };

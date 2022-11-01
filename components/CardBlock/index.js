@@ -4,24 +4,11 @@ import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import parse from 'html-react-parser';
 import { richTextOptions } from 'utils';
 import Image from 'next/image';
-import { SearchBar } from 'components';
+import { SearchBar, Podcast } from 'components';
 import style from './CardBlock.module.scss';
 
 const CardBlock = ({ cardBlock, cards, filteredCards, onCardSubmit }) => {
-  const cardToHtml = card => (
-    <article key={card.sys.id} className={style.card}>
-      <span className={style.image}>
-        <Image
-          src={`https:${card.fields.image.fields.file.url}`}
-          height={card.fields.image.fields.file.details.image.height}
-          width={card.fields.image.fields.file.details.image.width}
-          alt={card.fields.sectionTitle}
-        />
-      </span>
-      <h3>{card.fields.sectionTitle}</h3>
-      {parse(documentToHtmlString(card.fields.content, richTextOptions))}
-    </article>
-  );
+  const cardToHtml = card => <Podcast featuretteBlock={card} />;
   const output = !!filteredCards
     ? filteredCards.map(card => cardToHtml(card))
     : cardBlock.fields.cards.map(({ sys }) =>
