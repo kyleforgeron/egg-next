@@ -9,7 +9,7 @@ import style from './CardBlock.module.scss';
 
 const CardBlock = ({ cardBlock, cards, filteredCards, onCardSubmit }) => {
   const cardToHtml = card => (
-    <article key={card.sys.id}>
+    <article key={card.sys.id} className={style.card}>
       <span className={style.image}>
         <Image
           src={`https:${card.fields.image.fields.file.url}`}
@@ -40,7 +40,7 @@ const CardBlock = ({ cardBlock, cards, filteredCards, onCardSubmit }) => {
             filteredCards.length === 1 ? 'result' : 'results'
           }`}</p>
         )}
-        <section className={style.card}>{output}</section>
+        <section className={style.cardBlock}>{output}</section>
       </div>
     </section>
   );
