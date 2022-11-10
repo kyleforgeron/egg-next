@@ -8,7 +8,7 @@ import { SearchBar, Podcast } from 'components';
 import style from './CardBlock.module.scss';
 
 const CardBlock = ({ cardBlock, cards, filteredCards, onCardSubmit }) => {
-  const cardToHtml = card => <Podcast featuretteBlock={card} />;
+  const cardToHtml = card => <Podcast key={card.sys.id} featuretteBlock={card} />;
   const output = !!filteredCards
     ? filteredCards.map(card => cardToHtml(card))
     : cardBlock.fields.cards.map(({ sys }) =>
