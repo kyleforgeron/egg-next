@@ -1,16 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import Link from 'next/link';
 import Image from 'next/image';
-import { SearchBar } from 'components';
 import style from './NavBar.module.scss';
 
 const NavBar = ({ pages, siteIdentity }) => {
+  const [deep, isDeep] = useState(false);
+  useEffect(() => {
+    window.addEventListener('scroll', e => {
+      const scrollCheck = window.scrollY > 60;
+      if (scrollCheck && !deep) {
+        isDeep(true);
+      }
+      if (!scrollCheck && deep) {
+        isDeep(false);
+      }
+    });
+  }, [deep]);
+
   return (
     <header>
-      <nav className={style.nav}>
-        <Link href="/">
-          <a>
+      <nav
+        className={classNames(style.nav, {
+          [style['nav--deep']]: deep,
+        })}
+      >
+        <span className={style['nav-contents']}>
+          <Link href="/">
             <Image
               className={style['brand-logo']}
               src={`https:${siteIdentity[0].fields.logo.fields.file.url}`}
@@ -18,30 +35,27 @@ const NavBar = ({ pages, siteIdentity }) => {
               loading="lazy"
               width="100"
               height="60"
-              href="/"
             />
-          </a>
-        </Link>
-        <h2 className={style['brand-name']}>
-          {siteIdentity[0].fields.brandName}
-        </h2>
-        <span className={style['nav-links']}>
-          <SearchBar />
-          <Link href="/news" className={style['page-link']}>
-            Top Stories
           </Link>
-          {pages?.map(page => {
-            if (page.fields.navIndex > 0)
-              return (
-                <Link
-                  href={`/${page.fields.slug}`}
-                  key={page.fields.slug}
-                  className={style['page-link']}
-                >
-                  {page.fields.title}
-                </Link>
-              );
-          })}
+          {/*
+          <h2 className={style['brand-name']}>
+            {siteIdentity[0].fields.brandName}
+          </h2>
+          */}
+          <span
+            className={classNames(style['nav-links'], {
+              [style['nav-links--deep']]: deep,
+            })}
+          >
+            {pages?.map(page => {
+              if (page.fields.navIndex > 0)
+                return (
+                  <Link href={`/${page.fields.slug}`} key={page.fields.slug}>
+                    {page.fields.title}
+                  </Link>
+                );
+            })}
+          </span>
         </span>
       </nav>
     </header>

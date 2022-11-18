@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { fetchEntries, toKebabCase, getComponent } from 'utils';
-import { buzzsprout } from './api';
 import { Layout } from 'components';
 
 const Home = ({ pages, siteIdentity, page, cards }) => {

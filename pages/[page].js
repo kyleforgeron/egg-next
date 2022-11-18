@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { fetchEntries, toKebabCase, getComponent } from 'utils';
-import { buzzsprout } from './api';
 import { Layout } from 'components';
 
 const Page = ({ pages, siteIdentity, page, cards }) => {

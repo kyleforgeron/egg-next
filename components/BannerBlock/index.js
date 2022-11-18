@@ -19,6 +19,7 @@ const BannerBlock = ({ bannerBlock }) => {
         backgroundImage: `url('${bannerBlock.fields.background?.fields.file.url}')`,
       }}
     >
+      <span className={style['banner-base-overlay']} />
       {!!bannerBlock.fields.background && (
         <video
           id="background-video"
@@ -33,9 +34,24 @@ const BannerBlock = ({ bannerBlock }) => {
           />
         </video>
       )}
-      <h1 className={style['banner-title']}>
-        {bannerBlock.fields.sectionTitle}
-      </h1>
+      {bannerBlock.fields.sectionTitle === 'Home Page Banner' ? (
+        <h1
+          className={classNames(
+            style['banner-title'],
+            style['banner-title--home'],
+          )}
+        >
+          We show you how
+          <br />
+          you can <span className={style['banner-title--hollow']}>travel</span>
+          <br />
+          while you <span className={style['banner-title--hollow']}>teach</span>
+        </h1>
+      ) : (
+        <h1 className={style['banner-title']}>
+          {bannerBlock.fields.sectionTitle}
+        </h1>
+      )}
       <div className={style['banner-content']}>{content}</div>
     </header>
   );

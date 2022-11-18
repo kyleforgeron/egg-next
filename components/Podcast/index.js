@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
@@ -10,33 +10,57 @@ import style from './Podcast.module.scss';
 // Render a podcast player with multiple episodes
 
 const Podcast = ({ featuretteBlock }) => {
-  const content = parse(
+  const [showDetails, setShowDetails] = useState(false);
+  const [content, setContent] = useState('loading');
+  const shortDescription = parse(
+    documentToHtmlString(
+      featuretteBlock.fields.shortDescription,
+      richTextOptions,
+    ),
+  );
+  const fullDescription = parse(
     documentToHtmlString(featuretteBlock.fields.description, richTextOptions),
+  );
+  useEffect(
+    () => setContent(showDetails ? fullDescription : shortDescription),
+    [showDetails],
   );
   return (
     <div className={style['podcast']}>
-      <h3 className={style['podcast-title']}>{featuretteBlock.fields.title}</h3>
-      <p className={style['podcast-author']}>{featuretteBlock.fields.author}</p>
-      <p className={style['podcast-date']}>
-        {featuretteBlock.fields.datePosted}
-      </p>
-      <a
-        className={classNames(style['podcast-image'], {
-          [style['podcast-image--left']]: featuretteBlock.fields.imageLeft,
-          [style['podcast-image--right']]: !featuretteBlock.fields.imageLeft,
-        })}
-      >
-        <Image
-          src={`https:${featuretteBlock.fields.image.fields.file.url}`}
-          height={featuretteBlock.fields.image.fields.file.details.image.height}
-          width={featuretteBlock.fields.image.fields.file.details.image.width}
-          alt={featuretteBlock.fields.sectionTitle}
+      <div className={style['podcast-border']}>
+        <a
+          className={style['podcast-image']}
+          style={{
+            backgroundImage: `url('https:${featuretteBlock.fields.image.fields.file.url}')`,
+          }}
         />
-      </a>
-      <audio controls>
-        <source src={featuretteBlock.fields.episodeSrc} />
-      </audio>
-      <div className={style['podcast-description']}>{content}</div>
+        <div className={style['podcast-content']}>
+          <h3 className={style['podcast-title']}>
+            {featuretteBlock.fields.title}
+          </h3>
+          <div className={style['podcast-details']}>
+            <i>
+              posted by {featuretteBlock.fields.author} on{' '}
+              {new Date(featuretteBlock.fields.datePosted).toLocaleDateString()}
+            </i>
+            <button
+              className={style['podcast-infobutton']}
+              onClick={() => setShowDetails(!showDetails)}
+            >
+              {showDetails ? 'less info' : 'more info'}
+            </button>
+            <div>{content}</div>
+          </div>
+
+          <audio
+            className={style['podcast-audio']}
+            controls
+            controlsList="nofullscreen nodownload noplaybackrate"
+          >
+            <source src={featuretteBlock.fields.episodeSrc} />
+          </audio>
+        </div>
+      </div>
     </div>
   );
 };

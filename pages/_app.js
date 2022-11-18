@@ -18,7 +18,7 @@ const MyApp = ({ Component, pageProps }) => {
           content="width=device-width, initial-scale=1.0, user-scalable=no"
         />
       </Head>
-      <div className="page-wrapper">
+      <div>
         <Component {...pageProps} />
       </div>
     </>
