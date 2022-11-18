@@ -3,7 +3,6 @@ import {
   CardBlock,
   ContentBlock,
   Podcast,
-  FooterBlock,
 } from 'components';
 
 export const getComponent = (component, cards, filteredCards, onCardSubmit) => {
@@ -16,8 +15,6 @@ export const getComponent = (component, cards, filteredCards, onCardSubmit) => {
       return <ContentBlock key={component.sys.contentType.sys.id} contentBlock={component} />;
     case "featuretteBlock":
       return <Podcast key={component.sys.contentType.sys.id} featuretteBlock={component} />;
-    case "footerBlock":
-      return <FooterBlock key={component.sys.contentType.sys.id} footerBlock={component} />;
     default:
       return null;
   }

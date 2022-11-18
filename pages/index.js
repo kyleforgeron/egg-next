@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { fetchEntries, toKebabCase, getComponent } from 'utils';
-import { Layout } from 'components';
+import { FooterBlock, Layout } from 'components';
 
 const Home = ({ pages, siteIdentity, page, cards }) => {
   const [filteredCards, setFilteredCards] = useState(null);
@@ -35,6 +35,7 @@ const Home = ({ pages, siteIdentity, page, cards }) => {
       {page[0].components.map(item =>
         getComponent(item, cards, filteredCards, onCardSubmit),
       )}
+      <FooterBlock />
     </>
   );
 };

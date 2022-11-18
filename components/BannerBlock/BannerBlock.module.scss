@@ -3,33 +3,27 @@
 .banner {
 	
 	&-base {
-		color: $color-black;
+		color: $color-white;
 		margin: 0 auto;
 		width: 100vw;
 		height: 640px;
 		display: flex;
 		flex-direction: column;
-		align-items: flex-start;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
+		align-items: center;
 		justify-content: center;
 
-		&--hero {
-			color: $color-white;
-			background-size: cover;
-			background-repeat: no-repeat;
-			background-position: center center;
-			align-items: center;
-			justify-content: center;
-
-			> .banner-title {
-				width: 100%;
-				max-width: 1200px;
-				text-align: left;
-			}
-			> .banner-content {
-				width: 100%;
-				max-width: 1200px;
-				text-align: left;
-			}
+		> .banner-title {
+			width: 100%;
+			max-width: 1200px;
+			text-align: left;
+		}
+		> .banner-content {
+			width: 100%;
+			max-width: 1200px;
+			text-align: left;
 		}
 
 		&-overlay {
