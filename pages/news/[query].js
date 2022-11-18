@@ -9,7 +9,7 @@ const Results = ({ query, results, pages, siteIdentity }) => {
   return (
     <>
       <Layout
-        title={`Triad x Next.js - search for &apos;${query}&apos;`}
+        title={`Educators Going Global - search for &apos;${query}&apos;`}
         {...{ pages, siteIdentity }}
       />
       <header className={style["banner-base"]}>

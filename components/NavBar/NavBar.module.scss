@@ -7,17 +7,31 @@
   justify-content: flex-start;
   height: 60px;
   width: 100vw;
-	background-color: $color-white;
+	background-color: none;
 	color: $color-black;
   position: fixed;
   top: 0;
   z-index: 100;
+  padding: 35px 122px;
+  transition: padding 300ms ease;
+
+  &--deep {
+    background-color: $color-white;
+    padding: 10px 122px;
+  }
+
+  &-contents {
+    position: relative;
+    width: calc(100% - 244px);
+    display: flex;
+  }
 
   a {
-    color: $color-primary;
     font-family: sans-serif;
     text-decoration: none;
-    margin-left: 16px;
+    margin-left: 68px;
+    font-size: 20px;
+    font-weight: 700;
   
     &:hover {
       text-decoration: underline;
@@ -25,18 +39,37 @@
   }
 
   &-links {
-    margin: 0 32px;
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+
+    a {
+      color: $color-white;
+    }
+
+    &--deep {
+      a {
+        color: $color-primary;
+      }
+    }
   }
+
+  
 }
 
 .brand {
   &-logo {
     height: 60px;
     width: auto;
+    cursor: pointer;
   }
 
   &-name {
     font-family: sans-serif;
     pointer-events: none;
+    color: $color-white;
   }
 }

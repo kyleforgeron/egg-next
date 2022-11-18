@@ -1,27 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-import parse from 'html-react-parser';
-import { richTextOptions } from 'utils';
-import Image from 'next/image';
-import { SearchBar } from 'components';
+import { Podcast, CardTabs } from 'components';
 import style from './CardBlock.module.scss';
 
-const CardBlock = ({ cardBlock, cards, filteredCards, onCardSubmit }) => {
-  const cardToHtml = card => (
-    <article key={card.sys.id} className={style.card}>
-      <span className={style.image}>
-        <Image
-          src={`https:${card.fields.image.fields.file.url}`}
-          height={card.fields.image.fields.file.details.image.height}
-          width={card.fields.image.fields.file.details.image.width}
-          alt={card.fields.sectionTitle}
-        />
-      </span>
-      <h3>{card.fields.sectionTitle}</h3>
-      {parse(documentToHtmlString(card.fields.content, richTextOptions))}
-    </article>
-  );
+const CardBlock = ({ cardBlock, cards }) => {
+  const [filteredCards, setFilteredCards] = useState(null);
+  const [query, setQuery] = useState('');
+  useEffect(() => {
+    if (!query) return setFilteredCards(null);
+    const filteredList = cards.filter(card => {
+      if (
+        card.fields.title.toLowerCase().indexOf(query.toLowerCase()) > -1
+      )
+        return true;
+      if (
+        card.fields.description.content[1]?.content.filter(item => 
+          item.value?.toLowerCase().indexOf(query.toLowerCase()) > -1
+        ).length > 0
+      )
+        return true;
+      if (
+        card.metadata.tags.find(
+          tag => tag.sys.id.indexOf(query.toLowerCase()) > -1,
+        )
+      )
+        return true;
+      return false;
+    });
+    setFilteredCards(filteredList);
+  }, [cards, query]);
+
+  const cardToHtml = card => <Podcast key={card.sys.id} featuretteBlock={card} />;
   const output = !!filteredCards
     ? filteredCards.map(card => cardToHtml(card))
     : cardBlock.fields.cards.map(({ sys }) =>
@@ -30,16 +39,11 @@ const CardBlock = ({ cardBlock, cards, filteredCards, onCardSubmit }) => {
   return (
     <section
       id={cardBlock.fields.sectionLink}
-      className="page-wrapper"
+      className="section-wrapper"
     >
       <div className="inner">
         <h2>{cardBlock.fields.sectionTitle}</h2>
-        <SearchBar variant="card" {...{ onCardSubmit }} />
-        {!!filteredCards && (
-          <p>{`${filteredCards.length} ${
-            filteredCards.length === 1 ? 'result' : 'results'
-          }`}</p>
-        )}
+        <CardTabs {...{ query, setQuery }} />
         <section className={style.cardBlock}>{output}</section>
       </div>
     </section>

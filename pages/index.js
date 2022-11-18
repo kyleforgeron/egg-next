@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { fetchEntries } from 'utils';
-import { toKebabCase, getComponent } from 'utils';
+import { fetchEntries, toKebabCase, getComponent } from 'utils';
 import { Layout } from 'components';
 
 const Home = ({ pages, siteIdentity, page, cards }) => {
@@ -32,7 +31,7 @@ const Home = ({ pages, siteIdentity, page, cards }) => {
   };
   return (
     <>
-      <Layout title="Triad x Next.js" {...{ pages, siteIdentity }} />
+      <Layout title="Educators Going Global" {...{ pages, siteIdentity }} />
       {page[0].components.map(item =>
         getComponent(item, cards, filteredCards, onCardSubmit),
       )}
@@ -46,7 +45,7 @@ export const getStaticProps = async () => {
   const page = pages
     .map(p => p.fields)
     .filter(page => toKebabCase(page.title) === 'home-page');
-  const cards = await fetchEntries({ content_type: 'card' });
+  const cards = await fetchEntries({ content_type: 'featuretteBlock' });
 
   return {
     props: {

@@ -1,54 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
 import classNames from 'classnames';
 import style from './SearchBar.module.scss';
 
-const SearchBar = ({ variant, onCardSubmit }) => {
-  const [query, setQuery] = useState('');
-  const router = useRouter();
-  const onNytSubmit = e => {
-    e.preventDefault();
-    router.push(`/news/${query}`);
-  };
+const SearchBar = ({ variant, buttons, query, setQuery }) => {
   return (
-    <form
-      className={classNames(style.search, {
-        [style[`search--${variant}`]]: !!variant,
+    <input
+      type="text"
+      placeholder="Search"
+      value={buttons.includes(query) ? '' : query}
+      onChange={e => setQuery(e.target.value)}
+      className={classNames(style['search-bar'], {
+        [style[`search-bar--${variant}`]]: !!variant,
       })}
-      onSubmit={e =>
-        variant === 'card' ? onCardSubmit(e, query) : onNytSubmit(e)
-      }
-    >
-      <input
-        type="text"
-        placeholder={
-          variant === 'card' ? 'Filter content' : 'Search news articles'
-        }
-        onChange={e => setQuery(e.target.value)}
-        className={classNames(style['search-bar'], {
-          [style[`search-bar--${variant}`]]: !!variant,
-        })}
-      />
-      <input
-        type="submit"
-        value={variant === 'card' ? 'Apply' : 'Go'}
-        className={classNames(style['search-button'], {
-          [style[`search-button--${variant}`]]: !!variant,
-        })}
-      />
-    </form>
+    />
   );
 };
 
 SearchBar.defaultProps = {
   variant: '',
-  onCardSubmit: null,
+  buttons: [''],
 };
 
 SearchBar.propTypes = {
   variant: PropTypes.string,
-  onCardSubmit: PropTypes.func,
+  buttons: PropTypes.arrayOf(PropTypes.string),
+  query: PropTypes.string.isRequired,
+  setQuery: PropTypes.func.isRequired,
 };
 
 export default SearchBar;
