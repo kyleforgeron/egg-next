@@ -1,23 +1,33 @@
-import PropTypes from 'prop-types';
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-import parse from 'html-react-parser';
-import { richTextOptions } from 'utils';
+import { footerColumns } from './constants';
+import style from './FooterBlock.module.scss';
 
-const FooterBlock = ({ footerBlock }) => {
-  const content = parse(
-    documentToHtmlString(footerBlock.fields.content, richTextOptions),
-  );
+const FooterBlock = () => {
   return (
-    <section id="footer">
-      <div className="inner">
-        <div>{content}</div>
+    <section id="footer" className={style.footer}>
+      <div className="inner" style={{ padding: '64px 0px' }}>
+        <div className={style.flex}>
+          {footerColumns.map(column => (
+            <div key={column.title} className={style['footer-column']}>
+              <h3 className={style['footer-column-title']}>{column.title}</h3>
+              {column.links.map(link => (
+                <p key={link.text}>
+                  <a href={link.href}>{link.text}</a>
+                </p>
+              ))}
+            </div>
+          ))}
+          <div className={style['footer-column']}>
+              <h3 className={style['footer-column-title']}>Subscribe</h3>
+              <div >
+                <input type="email" className={style['footer-subscribe-input']} placeholder="Email address" />
+                <button type="button" className={style['footer-subscribe-button']}>Subscribe</button>
+              </div>
+            </div>
+        </div>
+        <div className={style['footer-divider']} />
       </div>
     </section>
   );
-};
-
-FooterBlock.propTypes = {
-  footerBlock: PropTypes.object.isRequired,
 };
 
 export default FooterBlock;

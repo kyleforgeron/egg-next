@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { fetchEntries, toKebabCase, getComponent } from 'utils';
-import { Layout } from 'components';
+import { Layout, FooterBlock } from 'components';
 
 const Page = ({ pages, siteIdentity, page, cards }) => {
   console.log('page', page[0].components, 'cards', cards);
@@ -11,6 +11,7 @@ const Page = ({ pages, siteIdentity, page, cards }) => {
         {...{ pages, siteIdentity }}
       />
       {page[0].components.map(item => getComponent(item, cards))}
+      <FooterBlock />
     </>
   );
 };
