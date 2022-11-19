@@ -3,14 +3,14 @@ import { fetchEntries, toKebabCase, getComponent } from 'utils';
 import { Layout, FooterBlock } from 'components';
 
 const Page = ({ pages, siteIdentity, page, cards }) => {
-  console.log('page', page[0].components, 'cards', cards);
+  const pageTitle = page[0].title;
   return (
     <>
       <Layout
         title={`Educators Going Global - ${page[0].title}`}
         {...{ pages, siteIdentity }}
       />
-      {page[0].components.map(item => getComponent(item, cards))}
+      {page[0].components.map(item => getComponent(pageTitle, item, cards))}
       <FooterBlock />
     </>
   );

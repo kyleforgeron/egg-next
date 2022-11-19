@@ -4,36 +4,12 @@ import { fetchEntries, toKebabCase, getComponent } from 'utils';
 import { FooterBlock, Layout } from 'components';
 
 const Home = ({ pages, siteIdentity, page, cards }) => {
-  const [filteredCards, setFilteredCards] = useState(null);
-  const onCardSubmit = (e, query) => {
-    e.preventDefault();
-    if (!query) return setFilteredCards(null);
-    const filteredList = cards.filter(card => {
-      if (
-        card.fields.sectionTitle.toLowerCase().indexOf(query.toLowerCase()) > -1
-      )
-        return true;
-      if (
-        card.fields.content.content[0].content[0].value.indexOf(
-          query.toLowerCase(),
-        ) > -1
-      )
-        return true;
-      if (
-        card.metadata.tags.find(
-          tag => tag.sys.id.indexOf(query.toLowerCase()) > -1,
-        )
-      )
-        return true;
-      return false;
-    });
-    setFilteredCards(filteredList);
-  };
+  const pageTitle = page[0].title;
   return (
     <>
       <Layout title="Educators Going Global" {...{ pages, siteIdentity }} />
       {page[0].components.map(item =>
-        getComponent(item, cards, filteredCards, onCardSubmit),
+        getComponent(pageTitle, item, cards),
       )}
       <FooterBlock />
     </>
