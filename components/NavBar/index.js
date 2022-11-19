@@ -26,7 +26,7 @@ const NavBar = ({ pages, siteIdentity }) => {
           [style['nav--deep']]: deep,
         })}
       >
-        <span className={style['nav-contents']}>
+        <div className={style['nav-contents']}>
           <Link href="/">
             <Image
               className={style['brand-logo']}
@@ -42,7 +42,7 @@ const NavBar = ({ pages, siteIdentity }) => {
             {siteIdentity[0].fields.brandName}
           </h2>
           */}
-          <span
+          <div
             className={classNames(style['nav-links'], {
               [style['nav-links--deep']]: deep,
             })}
@@ -55,8 +55,8 @@ const NavBar = ({ pages, siteIdentity }) => {
                   </Link>
                 );
             })}
-          </span>
-        </span>
+          </div>
+        </div>
       </nav>
     </header>
   );
