@@ -9,7 +9,7 @@ const Home = ({ pages, siteIdentity, page, cards }) => {
     <>
       <Layout title="Educators Going Global" {...{ pages, siteIdentity }} />
       {page[0].components.map(item =>
-        getComponent(pageTitle, item, cards),
+        getComponent(pageTitle, item, cards, page[0].metadata),
       )}
       <FooterBlock />
     </>

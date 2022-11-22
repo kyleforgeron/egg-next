@@ -4,15 +4,15 @@ export const footerColumns = [
     links: [
       {
         text: 'Listen to the Podcast',
-        href: '/#',
+        href: '/podcast',
       },
       {
         text: 'Read the Blog',
-        href: '/#',
+        href: '/blog',
       },
       {
         text: 'Access our Resources',
-        href: '/#',
+        href: '/library-resources',
       },
     ],
   },

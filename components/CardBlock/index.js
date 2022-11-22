@@ -2,33 +2,56 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Podcast, CardTabs } from 'components';
-import * as Arrow from 'assets/arrow-narrow-right.svg'
+import { Card, CardTabs } from 'components';
+import { toKebabCase } from 'utils';
+import * as Arrow from 'assets/arrow-narrow-right.svg';
+import { getButtonTitle } from './constants';
 import style from './CardBlock.module.scss';
 
 const CardBlock = ({ cardBlock, cards, pageTitle }) => {
   const home = pageTitle === 'Home Page';
+  const categoryPage = [
+    'Home Page',
+    'Blog',
+    'Podcast',
+    'Library Resources',
+    'EGG Stories',
+  ].includes(pageTitle);
   const [filteredCards, setFilteredCards] = useState(null);
   const [query, setQuery] = useState('');
-  const [tag, setTag] = useState(home ? 'community' : '');
+  const [tag, setTag] = useState(home ? 'schoolLife' : '');
+
   useEffect(() => {
     if (!query && !tag && home) return setFilteredCards(null);
     const filteredList = cards.filter(card => {
       if (!home) {
         if (
-          !card.metadata.tags.find(
-            tagObj => tagObj.sys.id.indexOf(pageTitle.toLowerCase()) > -1,
-          )
+          !card.metadata.tags.find(tagObj => {
+            /*console.log(
+              toKebabCase(tagObj.sys.id),
+              toKebabCase(pageTitle.toLowerCase()),
+              toKebabCase(tagObj.sys.id).indexOf(
+                toKebabCase(pageTitle.toLowerCase()),
+              ) > -1,
+            );*/
+            return (
+              tagObj.sys.id.indexOf(pageTitle.toLowerCase()) > -1 ||
+              toKebabCase(tagObj.sys.id).indexOf(
+                toKebabCase(pageTitle.toLowerCase()),
+              ) > -1 ||
+              toKebabCase(pageTitle.toLowerCase()).indexOf(
+                toKebabCase(tagObj.sys.id),
+              ) > -1
+            );
+          })
         )
           return false;
       }
       if (tag) {
         if (
-          !card.metadata.tags.find(
-            tagObj => {
-              return tagObj.sys.id.indexOf(tag) > -1;
-            }
-          )
+          !card.metadata.tags.find(tagObj => {
+            return tagObj.sys.id.indexOf(tag) > -1;
+          })
         )
           return false;
       }
@@ -45,9 +68,7 @@ const CardBlock = ({ cardBlock, cards, pageTitle }) => {
     setFilteredCards(home ? filteredList.splice(0, 3) : filteredList);
   }, [cards, query, tag]);
 
-  const cardToHtml = card => (
-    <Podcast key={card.sys.id} featuretteBlock={card} />
-  );
+  const cardToHtml = card => <Card key={card.sys.id} featuretteBlock={card} />;
   const output = !!filteredCards
     ? filteredCards.map(card => cardToHtml(card))
     : cardBlock.fields.cards.map(({ sys }) =>
@@ -56,18 +77,13 @@ const CardBlock = ({ cardBlock, cards, pageTitle }) => {
   return (
     <section id={cardBlock.fields.sectionLink} className="section-wrapper">
       <div className="inner">
-        <h2>
-          {home
-            ? 'Browse by topic'
-            : `Check out our ${pageTitle} content`}
-        </h2>
-        <CardTabs {...{ home, tag, setTag, query, setQuery }} />
+        <CardTabs {...{ home, categoryPage, tag, setTag, query, setQuery }} />
         <section className={style.cardBlock}>{output}</section>
         {home && (
           <div className={style['cardBlock-more']}>
-            <Link href={`/${tag}`}>
+            <Link href={`/${toKebabCase(tag)}`}>
               <span className={style['cardBlock-more-button']}>
-                <span>{`See all ${tag.charAt(0).toUpperCase() + tag.slice(1)} content`}</span>
+                <span>{`See all ${getButtonTitle(tag)} content`}</span>
                 <Image src={Arrow} alt="arrow-right" />
               </span>
             </Link>

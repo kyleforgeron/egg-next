@@ -1,6 +1,6 @@
 @import 'styles/theme.scss';
 
-.podcast {
+.card {
   margin: 16px 48px 16px 0;
   width: calc(33.3% - 32px);
 
@@ -29,7 +29,7 @@
 
   &-audio {
     width: 100%;
-    margin: 16px auto 0px;
+    margin: 16px auto;
   }
 
   &-content {
@@ -45,18 +45,38 @@
     position: relative;
     width: 100%;
 
-    > button {
+    > a {
       position: absolute;
       right: 0;
+      top: -10px;
+      text-decoration: none;
     }
   }
 
-  &-infobutton {
-    background-color: $color-clear;
-    border: none;
-    padding: 4px 0px;
-    cursor: pointer;
-    font-size: 12px;
+  &-more {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    &-button {
+      color: $color-primary;
+      background-color: $color-clear;
+      border: none;
+      cursor: pointer;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      > span > img {
+        transform: scale(0.8);
+      }
+
+      > :first-child {
+        margin-right: 6px;
+      }
+    }
   }
 
   audio::-webkit-media-controls-volume-control-container,

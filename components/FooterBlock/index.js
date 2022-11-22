@@ -8,17 +8,17 @@ const FooterBlock = () => {
         <div className={style.flex}>
           {footerColumns.map(column => (
             <div key={column.title} className={style['footer-column']}>
-              <h3 className={style['footer-column-title']}>{column.title}</h3>
+              <h4 className={style['footer-column-title']}>{column.title}</h4>
               {column.links.map(link => (
-                <p key={link.text}>
+                <h5 key={link.text}>
                   <a href={link.href}>{link.text}</a>
-                </p>
+                </h5>
               ))}
             </div>
           ))}
           <div className={style['footer-column']}>
-              <h3 className={style['footer-column-title']}>Subscribe</h3>
-              <div >
+              <h4 className={style['footer-column-title']}>Subscribe</h4>
+              <div>
                 <input type="email" className={style['footer-subscribe-input']} placeholder="Email address" />
                 <button type="button" className={style['footer-subscribe-button']}>Subscribe</button>
               </div>

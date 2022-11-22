@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { fetchEntries } from 'utils';
 import Link from 'next/link';
-import { Layout } from 'components';
+import { Layout, BannerBlock, FooterBlock } from 'components';
 
 const NotFound = ({ pages, siteIdentity }) => {
   return (
@@ -10,12 +10,11 @@ const NotFound = ({ pages, siteIdentity }) => {
         title="Educators Going Global - Page not found"
         {...{ pages, siteIdentity }}
       />
-      <div>
-        <section className="inner">
-          <h1>{`We're sorry, that page could not be found.`}</h1>
-          <Link href="/">Return home</Link>
-        </section>
-      </div>
+      <BannerBlock
+        title={`Sorry, we couldn't find that page!`}
+        content={<Link href="/">Return home</Link>}
+      />
+      <FooterBlock />
     </>
   );
 };

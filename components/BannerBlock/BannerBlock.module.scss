@@ -18,12 +18,20 @@
 		> .banner-title {
 			width: 100%;
 			max-width: 1200px;
-			text-align: left;
+			text-align: center;
+
+			&--home {
+				text-align: left;
+			}
 		}
 		> .banner-content {
 			width: 100%;
 			max-width: 1200px;
-			text-align: left;
+			text-align: center;
+
+			&--home {
+				text-align: left;
+			}
 		}
 
 		&-overlay {
@@ -44,12 +52,22 @@
 			-webkit-text-stroke: 1px $color-white;
 			-webkit-text-fill-color: $color-clear;
 		}
+
+		&--tag {
+			color: $color-secondary;
+			text-transform: uppercase;
+			font-weight: 700;
+		}
 	}
 
 	&-content {
 		text-align: left;
 		font-family: sans-serif;
 		z-index: 2;
+
+		> a {
+			color: $color-white;
+		}
 	}
 }
 
