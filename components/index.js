@@ -7,5 +7,7 @@ import FooterBlock from './FooterBlock';
 import NavBar from './NavBar';
 import SearchBar from './SearchBar';
 import Layout from './Layout';
+import Audio from './Audio';
+import Video from './Video';
 
-export { BannerBlock, CardBlock, CardTabs, ContentBlock, Card, FooterBlock, Layout, NavBar, SearchBar };
+export { BannerBlock, CardBlock, CardTabs, ContentBlock, Card, FooterBlock, Layout, NavBar, SearchBar, Audio, Video };

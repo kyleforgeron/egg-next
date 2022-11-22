@@ -27,11 +27,6 @@
     background-size: cover;
   }
 
-  &-audio {
-    width: 100%;
-    margin: 16px auto;
-  }
-
   &-content {
     padding: 16px;
   }
@@ -77,24 +72,6 @@
         margin-right: 6px;
       }
     }
-  }
-
-  audio::-webkit-media-controls-volume-control-container,
-  audio::-webkit-media-controls-volume-control-hover-background {
-    background-color: rgba(0,0,0,0.1);
-    border-radius: 16px;
-  }
-
-  audio::-webkit-media-controls-panel {
-    background-color: $color-primary-gradient;
-    color: $color-white;
-    border-radius: 44px;
-  }
-
-
-  audio::-webkit-media-controls-current-time-display,
-  audio::-webkit-media-controls-time-remaining-display {
-    font-size: 12px;
   }
 
   @media screen and (max-width: 980px) {

@@ -1,18 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import parse from 'html-react-parser';
 import { fetchEntries, getComponent } from 'utils';
-import { Layout, FooterBlock, Audio } from 'components';
+import { Layout, FooterBlock } from 'components';
 
-const Episode = ({ podcastEpisode, pages, siteIdentity, cards }) => {
+const Story = ({ eggStory, pages, siteIdentity, cards }) => {
   return (
     <>
       <Layout
-        title={`Educators Going Global - ${podcastEpisode.fields.title}`}
+        title={`Educators Going Global - ${eggStory.fields.title}`}
         {...{ pages, siteIdentity }}
       />
-      {podcastEpisode.fields.components.map(item => getComponent(podcastEpisode.fields.title, item, cards, podcastEpisode.metadata))}
-      <div className="inner" style={{marginBottom: '64px'}}>
-        <Audio src={podcastEpisode.fields.episodeSrc} />
+      {eggStory.fields.components.map(item =>
+        getComponent(eggStory.fields.title, item, cards, eggStory.metadata),
+      )}
+      <div className="inner" style={{ margin: '64px auto' }}>
+        {parse(eggStory.fields.episodeSrc)}
       </div>
       <FooterBlock />
     </>
@@ -23,12 +26,12 @@ export const getServerSideProps = async ({ params }) => {
   const pages = await fetchEntries({ content_type: 'page' });
   const postPages = await fetchEntries({ content_type: 'postPage' });
   const siteIdentity = await fetchEntries({ content_type: 'siteIdentity' });
-  const podcastEpisode = postPages.find(page => page.fields.slug === params.episode);
+  const eggStory = postPages.find(page => page.fields.slug === params.story);
   const cards = await fetchEntries({ content_type: 'featuretteBlock' });
 
   return {
     props: {
-      podcastEpisode,
+      eggStory,
       pages,
       siteIdentity,
       cards,
@@ -36,15 +39,15 @@ export const getServerSideProps = async ({ params }) => {
   };
 };
 
-Episode.defaultProps = {
+Story.defaultProps = {
   cards: [],
 };
 
-Episode.propTypes = {
-  podcastEpisode: PropTypes.object.isRequired,
+Story.propTypes = {
+  eggStory: PropTypes.object.isRequired,
   pages: PropTypes.array.isRequired,
   siteIdentity: PropTypes.array.isRequired,
   cards: PropTypes.array,
 };
 
-export default Episode;
+export default Story;
