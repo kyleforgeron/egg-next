@@ -11,7 +11,6 @@ const ContentBlock = ({ contentBlock }) => {
   return (
     <section id={contentBlock.fields.sectionLink}>
       <div className="inner">
-        <h2 className={style['post-title']}>{contentBlock.fields.sectionTitle}</h2>
         <div className={style['post-content']}>{content}</div>
       </div>
     </section>

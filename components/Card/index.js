@@ -6,12 +6,13 @@ import { richTextOptions } from 'utils';
 import style from './Card.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Audio } from 'components';
 import * as Open from 'assets/arrow-external.svg';
 
 const Card = ({ featuretteBlock }) => {
   const [content, setContent] = useState('loading');
   const cardType = featuretteBlock.metadata.tags.find(tagObj =>
-    ['podcastEpisode', 'blogPost', 'libraryResource', 'eggStory'].includes(
+    ['podcastEpisode', 'blogPost', 'libraryResource', 'eggStories'].includes(
       tagObj.sys.id,
     ),
   )?.sys.id;
@@ -23,7 +24,7 @@ const Card = ({ featuretteBlock }) => {
         return 'blog';
       case 'libraryResource':
         return 'library-resources';
-      case 'eggStory':
+      case 'eggStories':
         return 'egg-stories';
       default:
         return '';
@@ -41,7 +42,7 @@ const Card = ({ featuretteBlock }) => {
       <div className={style['card-border']}>
         <Link
           href={
-            cardType === 'podcastEpisode' || cardType === 'blogPost'
+            cardType === 'podcastEpisode' || cardType === 'blogPost' || cardType === 'eggStories'
               ? `/${slug(cardType)}/${featuretteBlock.fields.slug}`
               : '#'
           }
@@ -69,17 +70,11 @@ const Card = ({ featuretteBlock }) => {
             </i>
             <div>{content}</div>
           </div>
-          {featuretteBlock.fields.episodeSrc && (
-            <audio
-              className={style['card-audio']}
-              controls
-              controlsList="nofullscreen nodownload noplaybackrate"
-            >
-              <source src={featuretteBlock.fields.episodeSrc} />
-            </audio>
+          {cardType === 'podcastEpisode' && (
+            <Audio src={featuretteBlock.fields.episodeSrc} />
           )}
           <div className={style['card-details']}>
-            {(cardType === 'podcastEpisode' || cardType === 'blogPost') && (
+            {(cardType === 'podcastEpisode' || cardType === 'blogPost' || cardType === 'eggStories') && (
               <Link
                 href={`/${slug(cardType)}/${featuretteBlock.fields.slug}`}
                 passHref
@@ -88,7 +83,8 @@ const Card = ({ featuretteBlock }) => {
                   <span>
                     {cardType === 'podcastEpisode'
                       ? 'Episode page'
-                      : 'Read this post'}
+                      : cardType === 'Blog post' ? 'Read this post'
+                      : 'Watch the video'}
                   </span>
                   <Image src={Open} alt="open-page" />
                 </a>
