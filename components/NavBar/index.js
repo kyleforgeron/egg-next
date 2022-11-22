@@ -33,7 +33,7 @@ const NavBar = ({ pages, siteIdentity }) => {
               src={`https:${siteIdentity[0].fields.logo.fields.file.url}`}
               alt={`${siteIdentity[0].fields.logo.fields.title}`}
               loading="lazy"
-              width="100"
+              width="250"
               height="60"
             />
           </Link>
