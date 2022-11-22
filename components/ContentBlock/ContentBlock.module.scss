@@ -1,0 +1,22 @@
+@import 'styles/theme.scss';
+
+.post {
+  &-title {
+    margin-top: 64px;
+  }
+
+  &-content {
+    a {
+      color: $color-primary;
+    }
+  
+    > p, > ul > li > p, > a {
+      font-size: 20px;
+      line-height: 28px;
+      color: $color-black;
+    }
+
+    margin-bottom: 64px;
+  }
+  
+}

@@ -37,17 +37,12 @@ const NavBar = ({ pages, siteIdentity }) => {
               height="60"
             />
           </Link>
-          {/*
-          <h2 className={style['brand-name']}>
-            {siteIdentity[0].fields.brandName}
-          </h2>
-          */}
           <div
             className={classNames(style['nav-links'], {
               [style['nav-links--deep']]: deep,
             })}
           >
-            {pages?.map(page => {
+            {pages?.sort((a,b) => b.fields.navIndex - a.fields.navIndex).map(page => {
               if (page.fields.navIndex > 0)
                 return (
                   <Link href={`/${page.fields.slug}`} key={page.fields.slug}>
