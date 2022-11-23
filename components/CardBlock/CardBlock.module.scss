@@ -14,6 +14,10 @@
   min-height: 500px;
   width: 100%;
 
+  &-header {
+    margin-top: 128px;
+  }
+
   &-more {
     position: relative;
     display: flex;

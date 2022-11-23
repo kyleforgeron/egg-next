@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { fetchEntries, getComponent } from 'utils';
-import { Layout, FooterBlock } from 'components';
+import { Layout, CardBlock, FooterBlock } from 'components';
 
 const Post = ({ blogPost, pages, siteIdentity, cards }) => {
   return (
@@ -11,6 +11,7 @@ const Post = ({ blogPost, pages, siteIdentity, cards }) => {
         {...{ pages, siteIdentity }}
       />
       {blogPost.fields.components.map(item => getComponent(blogPost.fields.title, item, cards, blogPost.metadata))}
+      <CardBlock pageTitle={blogPost.fields.title} postPage {...{ cards }} />
       <FooterBlock />
     </>
   );

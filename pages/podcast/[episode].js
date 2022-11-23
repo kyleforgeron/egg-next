@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { fetchEntries, getComponent } from 'utils';
-import { Layout, FooterBlock, Audio } from 'components';
+import { Layout, CardBlock, Audio, FooterBlock } from 'components';
 
 const Episode = ({ podcastEpisode, pages, siteIdentity, cards }) => {
   return (
@@ -14,6 +14,7 @@ const Episode = ({ podcastEpisode, pages, siteIdentity, cards }) => {
       <div className="inner" style={{marginBottom: '64px'}}>
         <Audio src={podcastEpisode.fields.episodeSrc} />
       </div>
+      <CardBlock pageTitle={podcastEpisode.fields.title} postPage {...{ cards }} />
       <FooterBlock />
     </>
   );

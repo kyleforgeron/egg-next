@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import parse from 'html-react-parser';
 import { fetchEntries, getComponent } from 'utils';
-import { Layout, FooterBlock } from 'components';
+import { Layout, FooterBlock, CardBlock } from 'components';
 
 const Story = ({ eggStory, pages, siteIdentity, cards }) => {
   return (
@@ -17,6 +17,7 @@ const Story = ({ eggStory, pages, siteIdentity, cards }) => {
       <div className="inner" style={{ margin: '64px auto' }}>
         {parse(eggStory.fields.episodeSrc)}
       </div>
+      <CardBlock pageTitle={eggStory.fields.title} postPage {...{ cards }} />
       <FooterBlock />
     </>
   );
