@@ -16,6 +16,7 @@ export const footerColumns = [
       },
     ],
   },
+  /*
   {
     title: 'About Us',
     links: [
@@ -33,20 +34,21 @@ export const footerColumns = [
       },
     ],
   },
+  */
   {
     title: 'International Education',
     links: [
       {
-        text: 'Become and International Educator',
-        href: '/#',
+        text: 'Become an International Educator',
+        href: '/blog/becoming-an-international-educator',
       },
       {
         text: 'Perks of Teaching Internationally',
-        href: '/#',
+        href: '/blog/perks-of-teaching-internationally',
       },
       {
         text: 'What to Seek and What to Avoid',
-        href: '/#',
+        href: '/blog/what-to-consider-in-schools-and-countries-when-recruiting',
       },
     ],
   },

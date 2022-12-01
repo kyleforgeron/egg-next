@@ -1,10 +1,17 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import parse from 'html-react-parser';
+import { richTextOptions } from 'utils';
 import { buttons } from 'components/CardTabs/constants';
 import { getButtonTitle } from 'components/CardBlock/constants';
 import style from './BannerBlock.module.scss';
+import Link from 'next/link';
 
 const BannerBlock = ({ bannerBlock, pageMeta, title, content }) => {
+  const synopsis = parse(
+    documentToHtmlString(bannerBlock?.fields.synopsis, richTextOptions),
+  );
   return (
     <header
       id={title || bannerBlock.fields.sectionLink}
@@ -37,21 +44,83 @@ const BannerBlock = ({ bannerBlock, pageMeta, title, content }) => {
             style['banner-title--home'],
           )}
         >
-          <span>Travel.  </span> 
-          <span className={style['banner-title--hollow']}>Teach.  </span>
+          <span>Travel. </span>
+          <span className={style['banner-title--hollow']}>Teach. </span>
           Connect.
         </h1>
       ) : (
         <div className={style['banner-title']}>
-          {pageMeta?.tags && pageMeta.tags.map(tag => {
-            if (buttons(true).includes(tag.sys.id)) {
-              return <h3 className={style['banner-title--tag']} key={tag.sys.id}>{getButtonTitle(tag.sys.id)}</h3>;
-            }
-          })}
+          {pageMeta?.tags &&
+            pageMeta.tags.map(tag => {
+              if (buttons(true).includes(tag.sys.id)) {
+                return (
+                  <h3 className={style['banner-title--tag']} key={tag.sys.id}>
+                    {getButtonTitle(tag.sys.id)}
+                  </h3>
+                );
+              }
+            })}
           <h1>{title || bannerBlock?.fields.sectionTitle}</h1>
         </div>
       )}
-      <h3 className={style['banner-content']}>{content || bannerBlock?.fields.synopsis}</h3>
+      <h3
+        className={classNames(style['banner-content'], {
+          [style['banner-content--home']]:
+            bannerBlock?.fields.sectionTitle === 'Home Page Banner',
+        })}
+      >
+        {content || (!!synopsis[0] && synopsis) || bannerBlock?.fields.synopsis}
+        {bannerBlock?.fields.sectionTitle === 'Home Page Banner' && (
+          <div className={style['banner-actions']}>
+            <Link href="/podcast">
+              <button
+                className={classNames(
+                  style['banner-button'],
+                  style['banner-button--white'],
+                )}
+              >
+                Listen to the Podcast
+              </button>
+            </Link>
+            <Link href="/#topics">
+              <button className={style['banner-button']}>Explore Topics</button>
+            </Link>
+          </div>
+        )}
+        {bannerBlock?.fields.sectionTitle.indexOf('Blog Posts') > -1 && (
+          <div
+            className={classNames(
+              style['banner-actions'],
+              style['banner-actions--blog'],
+            )}
+          >
+            <Link href="/blog/becoming-an-international-educator">
+              <button
+                className={classNames(
+                  style['banner-button'],
+                  style['banner-button--white'],
+                )}
+              >
+                Start Here
+              </button>
+            </Link>
+            <Link href="/blog/perks-of-teaching-internationally">
+              <button className={style['banner-button']}>Perks</button>
+            </Link>
+            <Link href="/blog/what-to-consider-in-schools-and-countries-when-recruiting">
+              <button
+                className={classNames(
+                  style['banner-button'],
+                  style['banner-button--white'],
+                )}
+              >
+                Considerations
+              </button>
+            </Link>
+          </div>
+        )}
+      </h3>
+      <span id="topics" />
     </header>
   );
 };
@@ -60,10 +129,11 @@ BannerBlock.defaultProps = {
   pageMeta: {},
   title: '',
   content: null,
+  bannerBlock: null,
 };
 
 BannerBlock.propTypes = {
-  bannerBlock: PropTypes.object.isRequired,
+  bannerBlock: PropTypes.object,
   pageMeta: PropTypes.object,
   title: PropTypes.string,
   content: PropTypes.node,
