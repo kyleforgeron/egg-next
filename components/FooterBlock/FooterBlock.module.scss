@@ -43,12 +43,11 @@
 			border: none;
 			border-radius: 6px;
 			color: $color-white;
-			cursor: pointer;
+			cursor: not-allowed;
 			padding: 14px;
 
 			&:hover {
-				background-color: $color-secondary;
-				color: $color-black;
+				background-color: $color-primary-hover;
 			}
 		}
 	}

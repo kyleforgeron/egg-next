@@ -76,4 +76,4 @@ export const filteredList = (cards, tag, query, home, route, pageTitle) => cards
       return true;
     return false;
   }
-);
+).sort((a,b) => a.fields.promoted - b.fields.promoted);

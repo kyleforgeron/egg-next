@@ -19,8 +19,8 @@ const FooterBlock = () => {
           <div className={style['footer-column']}>
               <h4 className={style['footer-column-title']}>Subscribe</h4>
               <div>
-                <input type="email" className={style['footer-subscribe-input']} placeholder="Email address" />
-                <button type="button" className={style['footer-subscribe-button']}>Subscribe</button>
+                <input type="email" className={style['footer-subscribe-input']} placeholder="Email address" disabled />
+                <button type="button" className={style['footer-subscribe-button']} disabled>Coming soon!</button>
               </div>
             </div>
         </div>
