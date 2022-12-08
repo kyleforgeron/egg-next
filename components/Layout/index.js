@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import { NavBar } from 'components';
+import { NavBar, MobileWarn } from 'components';
 
 const Layout = ({ title, pages, siteIdentity }) => {
   return (
@@ -10,6 +10,7 @@ const Layout = ({ title, pages, siteIdentity }) => {
         <title>{title}</title>
       </Head>
       <NavBar {...{ pages, siteIdentity }} />
+      <MobileWarn />
     </>
   );
 };

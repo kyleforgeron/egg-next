@@ -42,9 +42,13 @@ const Card = ({ featuretteBlock }) => {
       <div className={style['card-border']}>
         <Link
           href={
-            cardType === 'podcastEpisode' || cardType === 'blogPost' || cardType === 'eggStories'
+            cardType === 'podcastEpisode' ||
+            cardType === 'blogPost' ||
+            cardType === 'eggStories'
               ? `/${slug(cardType)}/${featuretteBlock.fields.slug}`
-              : '#'
+              : cardType === 'libraryResource'
+              ? featuretteBlock.fields.slug || ''
+              : ''
           }
           passHref
         >
@@ -53,6 +57,7 @@ const Card = ({ featuretteBlock }) => {
             style={{
               backgroundImage: `url('https:${featuretteBlock.fields.image.fields.file.url}')`,
             }}
+            target={cardType === 'libraryResource' && '_blank'}
           />
         </Link>
         <div className={style['card-content']}>
@@ -74,22 +79,36 @@ const Card = ({ featuretteBlock }) => {
             <Audio src={featuretteBlock.fields.episodeSrc} />
           )}
           <div className={style['card-details']}>
-            {(cardType === 'podcastEpisode' || cardType === 'blogPost' || cardType === 'eggStories') && (
-              <Link
-                href={`/${slug(cardType)}/${featuretteBlock.fields.slug}`}
-                passHref
+            <Link
+              href={
+                cardType === 'podcastEpisode' ||
+                cardType === 'blogPost' ||
+                cardType === 'eggStories'
+                  ? `/${slug(cardType)}/${featuretteBlock.fields.slug}`
+                  : cardType === 'libraryResource'
+                  ? featuretteBlock.fields.slug || ''
+                  : ''
+              }
+              passHref
+            >
+              <a
+                className={style['card-more-button']}
+                target={cardType === 'libraryResource' && '_blank'}
               >
-                <a className={style['card-more-button']}>
-                  <span>
-                    {cardType === 'podcastEpisode'
-                      ? 'Episode page'
-                      : cardType === 'Blog post' ? 'Read this post'
-                      : 'Watch the video'}
-                  </span>
-                  <Image src={Open} alt="open-page" />
-                </a>
-              </Link>
-            )}
+                <span>
+                  {cardType === 'podcastEpisode'
+                    ? 'Episode page'
+                    : cardType === 'blogPost'
+                    ? 'Read this post'
+                    : cardType === 'eggStories'
+                    ? 'Watch the video'
+                    : cardType === 'libraryResource'
+                    ? 'Visit their page'
+                    : ''}
+                </span>
+                <Image src={Open} alt="open-page" />
+              </a>
+            </Link>
           </div>
         </div>
       </div>
