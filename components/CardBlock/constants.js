@@ -44,6 +44,9 @@ export const getContentTag = path => {
 export const filteredList = (cards, tag, query, home, route, pageTitle) => cards.filter(
   card => {
     const contentTag = getContentTag(route) || toKebabCase(pageTitle.toLowerCase());
+    // Don't show a card for the same post they're already viewing
+    if (card.fields.title === pageTitle) return false;
+    // If not on the home page, filter by the relevant topic or content type of the current section page
     if (!home) {
       if (
         !card.metadata.tags.find(tagObj => {
@@ -58,6 +61,7 @@ export const filteredList = (cards, tag, query, home, route, pageTitle) => cards
       )
         return false;
     }
+    // If a tag / tab has been selected, add that filter
     if (tag) {
       if (
         !card.metadata.tags.find(tagObj => {
@@ -66,6 +70,7 @@ export const filteredList = (cards, tag, query, home, route, pageTitle) => cards
       )
         return false;
     }
+    // If a query has been entered in the search bar, include any cards with matching titles or descriptions
     if (card.fields.title.toLowerCase().indexOf(query.toLowerCase()) > -1)
       return true;
     if (
@@ -76,4 +81,5 @@ export const filteredList = (cards, tag, query, home, route, pageTitle) => cards
       return true;
     return false;
   }
+  // Finally, move promoted cards to the front of the array
 ).sort((a,b) => a.fields.promoted - b.fields.promoted);
