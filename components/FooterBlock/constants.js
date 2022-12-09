@@ -16,25 +16,23 @@ export const footerColumns = [
       },
     ],
   },
-  /*
   {
     title: 'About Us',
     links: [
       {
-        text: 'Your Hosts',
-        href: '/#',
+        text: 'About Your Hosts',
+        href: '/about-your-hosts',
       },
       {
-        text: 'Our Advisory Board',
-        href: '/#',
+        text: 'EGGheads Advisory Board',
+        href: '/eggheads-advisory-board',
       },
       {
         text: 'Contact Us',
-        href: '/#',
+        href: '/contact-us',
       },
     ],
   },
-  */
   {
     title: 'International Education',
     links: [
