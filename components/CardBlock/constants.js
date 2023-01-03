@@ -39,6 +39,8 @@ export const getContentTag = path => {
   if (path.includes('podcast')) return 'podcast-episode';
   if (path.includes('library-resources')) return 'library-resources';
   if (path.includes('egg-stories')) return 'egg-stories';
+  if (path.includes('eggheads-advisory-board')) return 'eggheads-advisory-board';
+  if (path.includes('about-your-hosts')) return 'about-your-hosts';
 }
 
 export const filteredList = (cards, tag, query, home, route, pageTitle) => cards.filter(

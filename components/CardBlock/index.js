@@ -37,8 +37,18 @@ const CardBlock = ({ cards, pageTitle, postPage }) => {
   return (
     <section className="section-wrapper">
       <div className="inner">
-        {postPage ? <h2 className={style['cardBlock-header']}>Related {getBlockTitle(route)}</h2> : (
-          <CardTabs {...{ home, categoryPage, tag, setTag, query, setQuery }} />
+        {postPage ? (
+          <h2 className={style['cardBlock-header']}>
+            Related {getBlockTitle(route)}
+          </h2>
+        ) : (
+          !['EGGheads Advisory Board', 'About Your Hosts'].includes(
+            pageTitle,
+          ) && (
+            <CardTabs
+              {...{ home, categoryPage, tag, setTag, query, setQuery }}
+            />
+          )
         )}
         <section className={style.cardBlock}>{output}</section>
         {home && (
