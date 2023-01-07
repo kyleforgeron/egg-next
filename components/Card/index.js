@@ -23,7 +23,7 @@ const Card = ({ featuretteBlock }) => {
       case 'blogPost':
         return 'blog';
       case 'libraryResource':
-        return 'library-resources';
+        return 'resource-library';
       case 'eggStories':
         return 'egg-stories';
       default:
@@ -40,26 +40,35 @@ const Card = ({ featuretteBlock }) => {
   return (
     <div className={style['card']}>
       <div className={style['card-border']}>
-        <Link
-          href={
-            cardType === 'podcastEpisode' ||
-            cardType === 'blogPost' ||
-            cardType === 'eggStories'
-              ? `/${slug(cardType)}/${featuretteBlock.fields.slug}`
-              : cardType === 'libraryResource'
-              ? featuretteBlock.fields.slug || ''
-              : ''
-          }
-          passHref
-        >
-          <a
+        {(featuretteBlock.fields.slug || featuretteBlock.fields.externalLink) ? (
+          <Link
+            href={
+              cardType === 'podcastEpisode' ||
+              cardType === 'blogPost' ||
+              cardType === 'eggStories'
+                ? `/${slug(cardType)}/${featuretteBlock.fields.slug}`
+                : cardType === 'libraryResource'
+                ? featuretteBlock.fields.slug || featuretteBlock.fields.externalLink || ''
+                : ''
+            }
+            passHref
+          >
+            <a
+              className={style['card-image']}
+              style={{
+                backgroundImage: `url('https:${featuretteBlock.fields.image.fields.file.url}')`,
+              }}
+              target={cardType === 'libraryResource' ? '_blank' : ''}
+            />
+          </Link>
+        ) : (
+          <div
             className={style['card-image']}
             style={{
               backgroundImage: `url('https:${featuretteBlock.fields.image.fields.file.url}')`,
             }}
-            target={cardType === 'libraryResource' && '_blank'}
           />
-        </Link>
+        )}
         <div className={style['card-content']}>
           <h3 className={style['card-title']}>
             {featuretteBlock.fields.title}
@@ -78,38 +87,40 @@ const Card = ({ featuretteBlock }) => {
           {cardType === 'podcastEpisode' && (
             <Audio src={featuretteBlock.fields.episodeSrc} />
           )}
-          <div className={style['card-details']}>
-            <Link
-              href={
-                cardType === 'podcastEpisode' ||
-                cardType === 'blogPost' ||
-                cardType === 'eggStories'
-                  ? `/${slug(cardType)}/${featuretteBlock.fields.slug}`
-                  : cardType === 'libraryResource'
-                  ? featuretteBlock.fields.slug || ''
-                  : ''
-              }
-              passHref
-            >
-              <a
-                className={style['card-more-button']}
-                target={cardType === 'libraryResource' && '_blank'}
-              >
-                <span>
-                  {cardType === 'podcastEpisode'
-                    ? 'Episode page'
-                    : cardType === 'blogPost'
-                    ? 'Read this post'
-                    : cardType === 'eggStories'
-                    ? 'Watch the video'
+          {(featuretteBlock.fields.slug || featuretteBlock.fields.externalLink) && (
+            <div className={style['card-details']}>
+              <Link
+                href={
+                  cardType === 'podcastEpisode' ||
+                  cardType === 'blogPost' ||
+                  cardType === 'eggStories'
+                    ? `/${slug(cardType)}/${featuretteBlock.fields.slug}`
                     : cardType === 'libraryResource'
-                    ? 'Visit their page'
-                    : ''}
-                </span>
-                <Image src={Open} alt="open-page" />
-              </a>
-            </Link>
-          </div>
+                    ? featuretteBlock.fields.slug || featuretteBlock.fields.externalLink || ''
+                    : ''
+                }
+                passHref
+              >
+                <a
+                  className={style['card-more-button']}
+                  target={cardType === 'libraryResource' ? '_blank' : ''}
+                >
+                  <span>
+                    {cardType === 'podcastEpisode'
+                      ? 'Episode page'
+                      : cardType === 'blogPost'
+                      ? 'Read this post'
+                      : cardType === 'eggStories'
+                      ? 'Watch the video'
+                      : cardType === 'libraryResource'
+                      ? 'Get more information'
+                      : ''}
+                  </span>
+                  <Image src={Open} alt="open-page" />
+                </a>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

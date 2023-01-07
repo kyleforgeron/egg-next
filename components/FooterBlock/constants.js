@@ -12,7 +12,7 @@ export const footerColumns = [
       },
       {
         text: 'Access our Resources',
-        href: '/library-resources',
+        href: '/resource-library',
       },
     ],
   },

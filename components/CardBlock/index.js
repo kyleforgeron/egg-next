@@ -15,7 +15,7 @@ const CardBlock = ({ cards, pageTitle, postPage }) => {
     'Home Page',
     'Blog',
     'Podcast',
-    'Library Resources',
+    'Resource Library',
     'EGG Stories',
   ].includes(pageTitle);
   const [filteredCards, setFilteredCards] = useState(null);
@@ -27,8 +27,16 @@ const CardBlock = ({ cards, pageTitle, postPage }) => {
   useEffect(() => {
     if (!query && !tag && home) return setFilteredCards(null);
     const cardList = filteredList(cards, tag, query, home, route, pageTitle);
+    /*
+    cardList?.map((c, i) => {
+      if (c.fields.promoted) {
+        console.log('promoted', c.fields.title, 'index', i);
+      }
+      return c;
+    });
+    */
     setFilteredCards(home || postPage ? cardList.splice(0, 3) : cardList);
-  }, [cards, query, tag]);
+  }, [cards, query, tag]); //eslint-disable-line
 
   const cardToHtml = card => <Card key={card.sys.id} featuretteBlock={card} />;
   const output = !!filteredCards

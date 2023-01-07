@@ -6,6 +6,9 @@
   }
 
   &-content {
+    width: 100%;
+    margin: 64px 0px;
+
     a {
       color: $color-primary;
     }
@@ -16,7 +19,14 @@
       color: $color-black;
     }
 
-    margin: 64px 0px;
+    img {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 50%;
+      max-height: 500px;
+      margin: 40px auto;
+    }
   }
   
 }

@@ -10,7 +10,7 @@ const Post = ({ blogPost, pages, siteIdentity, cards }) => {
         title={`Educators Going Global - ${blogPost.fields.title}`}
         {...{ pages, siteIdentity }}
       />
-      {blogPost.fields.components.map(item => getComponent(blogPost.fields.title, item, cards, blogPost.metadata))}
+      {blogPost.fields.components.map(item => getComponent(blogPost.fields.title, item, cards, blogPost, blogPost.metadata))}
       <CardBlock pageTitle={blogPost.fields.title} postPage {...{ cards }} />
       <FooterBlock />
     </>

@@ -10,7 +10,7 @@ const Episode = ({ podcastEpisode, pages, siteIdentity, cards }) => {
         title={`Educators Going Global - ${podcastEpisode.fields.title}`}
         {...{ pages, siteIdentity }}
       />
-      {podcastEpisode.fields.components.map(item => getComponent(podcastEpisode.fields.title, item, cards, podcastEpisode.metadata))}
+      {podcastEpisode.fields.components.map(item => getComponent(podcastEpisode.fields.title, item, cards, podcastEpisode, podcastEpisode.metadata))}
       <div className="inner" style={{marginBottom: '64px'}}>
         <Audio src={podcastEpisode.fields.episodeSrc} />
       </div>

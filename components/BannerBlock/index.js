@@ -8,15 +8,16 @@ import { getButtonTitle } from 'components/CardBlock/constants';
 import style from './BannerBlock.module.scss';
 import Link from 'next/link';
 
-const BannerBlock = ({ bannerBlock, pageMeta, title, content }) => {
+const BannerBlock = ({ bannerBlock, pageMeta, page, pageTitle, content }) => {
   const synopsis = parse(
     documentToHtmlString(bannerBlock?.fields.synopsis, richTextOptions),
   );
+  console.log('page', page, 'pageMeta', pageMeta, 'pageTitle', pageTitle);
   return (
     <header
-      id={title || bannerBlock.fields.sectionLink}
+      id={bannerBlock.fields.sectionLink}
       className={classNames(style['banner-base'], {
-        [style['banner-base--hero']]: !!bannerBlock?.fields.background,
+        [style['banner-base--home']]: ['Home Page', 'Blog'].includes(pageTitle),
       })}
       style={{
         backgroundImage: `url('${bannerBlock?.fields?.background?.fields.file.url}')`,
@@ -49,7 +50,11 @@ const BannerBlock = ({ bannerBlock, pageMeta, title, content }) => {
           Connect.
         </h1>
       ) : (
-        <div className={style['banner-title']}>
+        <div
+          className={classNames(style['banner-title'], {
+            [style['banner-title--post']]: page?.sys?.contentType.sys.id === "postPage",
+          })}
+        >
           {pageMeta?.tags &&
             pageMeta.tags.map(tag => {
               if (buttons(true).includes(tag.sys.id)) {
@@ -60,7 +65,7 @@ const BannerBlock = ({ bannerBlock, pageMeta, title, content }) => {
                 );
               }
             })}
-          <h1>{title || bannerBlock?.fields.sectionTitle}</h1>
+          <h1>{bannerBlock?.fields.sectionTitle}</h1>
         </div>
       )}
       <h3
@@ -84,6 +89,16 @@ const BannerBlock = ({ bannerBlock, pageMeta, title, content }) => {
             </Link>
             <Link href="/#topics">
               <button className={style['banner-button']}>Explore Topics</button>
+            </Link>
+            <Link href="/blog">
+              <button
+                className={classNames(
+                  style['banner-button'],
+                  style['banner-button--white'],
+                )}
+              >
+                New? Start Here
+              </button>
             </Link>
           </div>
         )}
@@ -127,7 +142,7 @@ const BannerBlock = ({ bannerBlock, pageMeta, title, content }) => {
 
 BannerBlock.defaultProps = {
   pageMeta: {},
-  title: '',
+  pageTitle: '',
   content: null,
   bannerBlock: null,
 };

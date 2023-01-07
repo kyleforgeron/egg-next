@@ -12,7 +12,7 @@ const Story = ({ eggStory, pages, siteIdentity, cards }) => {
         {...{ pages, siteIdentity }}
       />
       {eggStory.fields.components.map(item =>
-        getComponent(eggStory.fields.title, item, cards, eggStory.metadata),
+        getComponent(eggStory.fields.title, item, cards, eggStory, eggStory.metadata),
       )}
       <div className="inner" style={{ margin: '64px auto' }}>
         {parse(eggStory.fields.episodeSrc)}
