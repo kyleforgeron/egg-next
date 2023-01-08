@@ -15,7 +15,7 @@ const BannerBlock = ({ bannerBlock, pageMeta, page, pageTitle, content }) => {
   // console.log('page', page, 'pageMeta', pageMeta, 'pageTitle', pageTitle);
   return (
     <header
-      id={bannerBlock.fields.sectionLink}
+      id={bannerBlock?.fields.sectionLink}
       className={classNames(style['banner-base'], {
         [style['banner-base--home']]: ['Home Page', 'Blog'].includes(pageTitle),
       })}
