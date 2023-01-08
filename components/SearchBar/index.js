@@ -6,7 +6,7 @@ import style from './SearchBar.module.scss';
 const SearchBar = ({ variant, buttons, query, setQuery }) => {
   return (
     <input
-      type="text"
+      type="search"
       placeholder="Search"
       value={buttons.includes(query) ? '' : query}
       onChange={e => setQuery(e.target.value)}

@@ -1,67 +1,104 @@
 @import 'styles/theme.scss';
 
 .footer {
-	width: 100vw;
-	height: 400px;
-	background: linear-gradient(274.84deg, #331414 0.24%, #1D201D 88.81%);
-	color: $color-white;
+  width: 100vw;
+  min-height: 400px;
+  height: auto;
+  padding: 48px 0px;
+  background: linear-gradient(274.84deg, #331414 0.24%, #1d201d 88.81%);
+  color: $color-white;
 
-	&-column {
-		display: block;
+  &-column {
+    display: block;
 
-		&-title {
-			text-transform: uppercase;
-			font-size: 12px;
-			font-weight: 700;
-			margin-bottom: 16px;
-		}
+    &:not(:last-child) {
+      margin-right: 48px;
+    }
 
-		a {
-			margin-bottom: 16px;
-			color: $color-white;
-			text-decoration: none;
+    @media screen and (max-width: 768px) {
+      margin-bottom: 48px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
 
-			&:hover {
-				text-decoration: underline;
+    &-title {
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    a {
+      margin-bottom: 16px;
+      color: $color-white;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &-subscribe {
+    @media screen and (max-width: 768px) {
+      width: 80%;
+      display: flex;
+      align-items: fcenter;
+      justify-content: center;
+      flex-direction: column;
+    }
+    &-input {
+      background-color: $color-clear;
+      color: $color-white;
+      border: 1px solid $color-white;
+      border-radius: 6px;
+      padding: 14px;
+      margin-right: 16px;
+      width: 375px;
+
+			@media screen and (max-width: 1024px) {
+				width: 250px;
 			}
-		}
-	}
 
-	&-subscribe {
-		&-input {
-			background-color: $color-clear;
-			color: $color-white;
-			border: 1px solid $color-white;
-			border-radius: 6px;
-			padding: 14px;
-			margin-right: 16px;
-			width: 375px;
-		}
+      @media screen and (max-width: 768px) {
+        width: calc(100% - 28px);
+      }
+    }
 
-		&-button {
-			background-color: $color-primary;
-			border: none;
-			border-radius: 6px;
-			color: $color-white;
-			cursor: not-allowed;
-			padding: 14px;
+    &-button {
+      background-color: $color-primary;
+      border: none;
+      border-radius: 6px;
+      color: $color-white;
+      cursor: not-allowed;
+      padding: 14px;
+      width: 40%;
+      min-width: 160px;
+      margin: 24px auto 0px;
 
-			&:hover {
-				background-color: $color-primary-hover;
-			}
-		}
-	}
+      &:hover {
+        background-color: $color-primary-hover;
+      }
+    }
+  }
 
-	&-divider {
-		border-top: 1px solid $color-white;
-		width: 100%;
-		height: 0px;
-		margin: 56px 0px 32px;
-	}
+  &-divider {
+    border-top: 1px solid $color-white;
+    width: 100%;
+    height: 0px;
+    margin: 56px 0px 32px;
+  }
 }
 
 .flex {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.block {
+  display: block;
 }

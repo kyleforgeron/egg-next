@@ -7,24 +7,31 @@ import { buttons } from './constants';
 import style from './CardTabs.module.scss';
 
 const CardTabs = ({ home, categoryPage, tag, setTag, query, setQuery }) => {
-
   return (
-    <nav className={style.tabs}>
-      <span className={style['tabs-contents']}>
-        {buttons(categoryPage, home).map(button => (
-          <button
-            className={classNames(style['tabs-button'], {
-              [style['tabs-button--selected']]: tag === button,
-            })}
-            onClick={() => setTag(button)}
-            key={button}
-          >
-            {getButtonTitle(button)}
-          </button>
-        ))}
-      </span>
-      <SearchBar variant="card" buttons={buttons(categoryPage)} {...{ query, setQuery }} />
-    </nav>
+    <>
+      <nav className={style.tabs}>
+        <div className={style['tabs-contents']}>
+          {buttons(categoryPage, home).map(button => (
+            <button
+              className={classNames(style['tabs-button'], {
+                [style['tabs-button--selected']]: tag === button,
+              })}
+              onClick={() => setTag(button)}
+              key={button}
+            >
+              {getButtonTitle(button)}
+            </button>
+          ))}
+        </div>
+        <div className={style['tabs-search']}>
+          <SearchBar
+            variant="card"
+            buttons={buttons(categoryPage)}
+            {...{ query, setQuery }}
+          />
+          </div>
+      </nav>
+    </>
   );
 };
 

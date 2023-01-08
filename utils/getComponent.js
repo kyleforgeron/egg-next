@@ -5,10 +5,10 @@ import {
   Card,
 } from 'components';
 
-export const getComponent = (pageTitle, component, cards, pageMeta) => {
+export const getComponent = (pageTitle, component, cards, page, pageMeta) => {
   switch (component.sys.contentType.sys.id) {
     case "bannerBlock":
-      return <BannerBlock key={component.sys.contentType.sys.id} bannerBlock={component} {...{ pageMeta }} />;
+      return <BannerBlock key={component.sys.contentType.sys.id} bannerBlock={component} {...{ page, pageTitle, pageMeta }} />;
     case "cardBlock":
       return <CardBlock key={component.sys.contentType.sys.id} {...{ cards, pageTitle }} />;
     case "contentBlock":

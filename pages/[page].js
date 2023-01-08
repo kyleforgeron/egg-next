@@ -10,7 +10,7 @@ const Page = ({ pages, siteIdentity, page, cards }) => {
         title={`Educators Going Global - ${page[0].title}`}
         {...{ pages, siteIdentity }}
       />
-      {page[0].components.map(item => getComponent(pageTitle, item, cards))}
+      {page[0].components.map(item => getComponent(pageTitle, item, cards, page[0], page[0].metadata))}
       <FooterBlock />
     </>
   );

@@ -3,32 +3,26 @@
 .search {
   display: inline;
   margin-right: 16px;
+  background-color: $color-clear !important;
 
   &-bar {
+
+  background-color: $color-white;
     border: 1px solid $color-primary;
-    border-radius: 16px;
+    border-radius: 24px;
     padding: 4px 16px;
-    height: 24px;
+    height: 50px;
+    width: 100%;
+    font-size: 16px;
 
-    &--card {
-      border-radius: 24px;
-      padding: 12px 24px;
-      font-size: 16px;
+    @media screen and (max-width: 1024px) {
+      padding: 4px 24px;
     }
-  }
 
-  &-button {
-    border: 1px solid $color-primary;
-    border-radius: 50%;
-    background-color: $color-primary;;
-    color: $color-white;
-    padding: 4px;
-    margin-left: 4px;
-    cursor: pointer;
-
-    &--card {
-      padding: 12px 4px;
-      margin-left: 8px;
+    @media screen and (max-width: 576px) {
+      font-size: 12px;
+      padding: 4px 16px;
+      height: 40px;
     }
   }
 }
