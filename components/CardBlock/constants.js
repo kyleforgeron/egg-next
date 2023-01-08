@@ -34,27 +34,24 @@ export const getBlockTitle = title => {
   if (title.includes('egg-stories')) return 'Stories from Educators Going Global';
 }
 
-export const getContentTag = title => {
-  console.log('getting content tag for', title);
-  if (title.toLowerCase().includes('blog')) return 'blog-post';
-  if (title.toLowerCase().includes('podcast')) return 'podcast-episode';
-  if (title.toLowerCase().includes('resource library')) return 'library-resource';
+export const getContentTag = route => {
+  if (route.includes('blog')) return 'blog-post';
+  if (route.includes('podcast')) return 'podcast-episode';
+  if (route.includes('resource-library')) return 'library-resource';
+  if (route.includes('egg-stories')) return 'egg-stories';
 }
 
 export const filteredList = (cards, tag, query, home, route, pageTitle) => cards.filter(
   card => {
-    const contentTag = getContentTag(pageTitle) || toKebabCase(pageTitle.toLowerCase());
-    console.log(getContentTag(pageTitle), contentTag);
+    const contentTag = getContentTag(route) || toKebabCase(pageTitle.toLowerCase());
     // Don't show a card for the same post they're already viewing
-    if (card.fields.title === pageTitle) {
-      console.log(card.fields.title, pageTitle);
+    if (card.fields.title.toLowerCase().indexOf(pageTitle.toLowerCase()) > -1) {
       return false;
     } 
     // If not on the home page, filter by the relevant topic or content type of the current section page
     if (!home) {
       if (
         !card.metadata.tags.find(tagObj => {
-          if (contentTag === 'library-resource') console.log(tagObj.sys.id, contentTag);
           return (
             tagObj.sys.id.indexOf(contentTag) > -1 ||
             toKebabCase(tagObj.sys.id).indexOf(contentTag) > -1 ||
@@ -68,7 +65,7 @@ export const filteredList = (cards, tag, query, home, route, pageTitle) => cards
     }
     // If a tag / tab has been selected, add that filter
     if (tag) {
-      console.log('selected tag', tag);
+      // console.log('selected tag', tag);
       if (
         !card.metadata.tags.find(tagObj => {
           return tagObj.sys.id.indexOf(tag) > -1;

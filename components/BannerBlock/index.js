@@ -12,7 +12,7 @@ const BannerBlock = ({ bannerBlock, pageMeta, page, pageTitle, content }) => {
   const synopsis = parse(
     documentToHtmlString(bannerBlock?.fields.synopsis, richTextOptions),
   );
-  console.log('page', page, 'pageMeta', pageMeta, 'pageTitle', pageTitle);
+  // console.log('page', page, 'pageMeta', pageMeta, 'pageTitle', pageTitle);
   return (
     <header
       id={bannerBlock.fields.sectionLink}

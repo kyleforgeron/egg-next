@@ -4,13 +4,17 @@
   margin: 16px 32px 16px 0;
   width: calc(33.3% - 22px);
 
-  &:nth-child(3n) {
-    margin-right: 0;
-  }
-
   @media screen and (max-width: 1024px) {
     margin: 16px 24px 16px 0;
     width: calc(33.3% - 16px);
+
+    &:nth-child(2n) {
+      margin-right: 16px;
+    }
+
+    &:nth-child(3n) {
+      margin-right: 0px;
+    }
   }
 
   @media screen and (max-width: 768px) {
@@ -72,10 +76,6 @@
       right: 0;
       top: -10px;
       text-decoration: none;
-
-      @media screen and (max-width: 576px) {
-        top: -30px;
-      }
     }
   }
 
