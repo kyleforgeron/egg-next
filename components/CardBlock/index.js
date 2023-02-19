@@ -35,14 +35,14 @@ const CardBlock = ({ cards, pageTitle, postPage }) => {
     ? filteredCards.map(card => cardToHtml(card))
     : cards.map(item => cardToHtml(item));
   return (
-    <section className="section-wrapper">
+    <section className="cardblock-wrapper">
       <div className="inner">
         {postPage ? (
           <h2 className={style['cardBlock-header']}>
             Related {getBlockTitle(route)}
           </h2>
         ) : (
-          !['EGGheads Advisory Board', 'About Your Hosts'].includes(
+          !['Special Thanks', 'About Your Hosts'].includes(
             pageTitle,
           ) && (
             <CardTabs

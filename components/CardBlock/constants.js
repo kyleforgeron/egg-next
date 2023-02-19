@@ -35,6 +35,7 @@ export const getBlockTitle = title => {
 }
 
 export const getContentTag = (route, pageTitle) => {
+  console.log(route, pageTitle);
   if (route.includes('blog')) return 'blog-post';
   if (route.includes('podcast')) return 'podcast-episode';
   if (route.includes('resource-library')) return 'library-resource';
@@ -43,6 +44,7 @@ export const getContentTag = (route, pageTitle) => {
   if (pageTitle.includes('Podcast')) return 'podcast-episode';
   if (pageTitle.includes('Resource Library')) return 'library-resource';
   if (pageTitle.includes('EGG Stories')) return 'egg-stories';
+  if (pageTitle.includes('Special Thanks')) return 'eggheads-advisory-board';
 }
 
 export const filteredList = (cards, tag, query, route, home, pageTitle) => cards.filter(

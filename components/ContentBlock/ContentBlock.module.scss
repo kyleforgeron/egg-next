@@ -1,5 +1,15 @@
 @import 'styles/theme.scss';
 
+
+.contentblock-wrapper {
+  height: auto;
+  min-height: calc(100vh - 845px);
+
+  @media screen and (max-width: 768px) {
+    margin: 32px 0px;
+  }
+}
+
 .post {
   &-title {
     margin-top: 64px;
