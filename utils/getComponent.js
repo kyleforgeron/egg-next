@@ -6,7 +6,7 @@ import {
 } from 'components';
 
 export const getComponent = (pageTitle, component, cards, page, pageMeta) => {
-  switch (component.sys.contentType.sys.id) {
+  switch (component.sys?.contentType.sys.id) {
     case "bannerBlock":
       return <BannerBlock key={component.sys.contentType.sys.id} bannerBlock={component} {...{ page, pageTitle, pageMeta }} />;
     case "cardBlock":
@@ -16,6 +16,6 @@ export const getComponent = (pageTitle, component, cards, page, pageMeta) => {
     case "featuretteBlock":
       return <Card key={component.sys.contentType.sys.id} featuretteBlock={component} />;
     default:
-      return null;
+      return component;
   }
 };

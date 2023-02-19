@@ -26,15 +26,7 @@ const CardBlock = ({ cards, pageTitle, postPage }) => {
 
   useEffect(() => {
     if (!query && !tag && home) return setFilteredCards(null);
-    const cardList = filteredList(cards, tag, query, home, route, pageTitle);
-    /*
-    cardList?.map((c, i) => {
-      if (c.fields.promoted) {
-        console.log('promoted', c.fields.title, 'index', i);
-      }
-      return c;
-    });
-    */
+    const cardList = filteredList(cards, tag, query, route, home, pageTitle);
     setFilteredCards(home || postPage ? cardList.splice(0, 3) : cardList);
   }, [cards, query, tag]); //eslint-disable-line
 
@@ -43,14 +35,14 @@ const CardBlock = ({ cards, pageTitle, postPage }) => {
     ? filteredCards.map(card => cardToHtml(card))
     : cards.map(item => cardToHtml(item));
   return (
-    <section className="section-wrapper">
+    <section className="cardblock-wrapper">
       <div className="inner">
         {postPage ? (
           <h2 className={style['cardBlock-header']}>
             Related {getBlockTitle(route)}
           </h2>
         ) : (
-          !['EGGheads Advisory Board', 'About Your Hosts'].includes(
+          !['Special Thanks', 'About Your Hosts'].includes(
             pageTitle,
           ) && (
             <CardTabs

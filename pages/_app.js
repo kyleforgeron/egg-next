@@ -7,10 +7,7 @@ const MyApp = ({ Component, pageProps }) => {
     <>
       <Head>
         <title>Educators Going Global</title>
-        <meta
-          name="description"
-          content="Educators Going Global"
-        />
+        <meta name="description" content="Educators Going Global" />
         <link rel="icon" type="image/png" href={'images/favicon.png'} />
         <meta charSet="utf-8" />
         <meta

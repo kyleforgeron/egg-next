@@ -1,7 +1,8 @@
 import classNames from 'classnames';
-import { footerColumns } from './constants';
+import { footerColumns, socials } from './constants';
 import style from './FooterBlock.module.scss';
 import { useMediaQuery } from 'utils/useMediaQuery';
+import Image from 'next/image';
 
 const FooterBlock = () => {
   const isMobile = useMediaQuery('(max-width: 768px)');
@@ -22,14 +23,22 @@ const FooterBlock = () => {
             </div>
           ))}
           <div className={style['footer-column']}>
-              <h4 className={style['footer-column-title']}>Subscribe</h4>
+              <h4 className={style['footer-column-title']}>Subscribe to our Newsletter for Updates</h4>
               <div className={style['footer-subscribe']}>
-                <input type="email" className={style['footer-subscribe-input']} placeholder="Email address" disabled />
-                <button type="button" className={style['footer-subscribe-button']} disabled>Coming soon!</button>
+                <a href="https://subscribepage.io/Educators_Going_Global_Newsletter" style={{ margin: "0px auto" }} target="_blank" rel="noopener noreferrer">
+                  <button type="button" className={style['footer-subscribe-button']}>SIGN ME UP!</button>
+                </a>
               </div>
             </div>
         </div>
         <div className={style['footer-divider']} />
+          <div className={style['footer-socials']}>
+            {socials.map(link => (
+              <a href={link.href} key={link.alt} target="_blank" rel="noopener noreferrer">
+                <Image src={link.src} alt={link.alt} />
+              </a>
+            ))}
+          </div>
       </div>
     </section>
   );
