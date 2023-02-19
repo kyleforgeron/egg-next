@@ -34,16 +34,20 @@ export const getBlockTitle = title => {
   if (title.includes('egg-stories')) return 'Stories from Educators Going Global';
 }
 
-export const getContentTag = route => {
+export const getContentTag = (route, pageTitle) => {
   if (route.includes('blog')) return 'blog-post';
   if (route.includes('podcast')) return 'podcast-episode';
   if (route.includes('resource-library')) return 'library-resource';
   if (route.includes('egg-stories')) return 'egg-stories';
+  if (pageTitle.includes('Blog')) return 'blog-post';
+  if (pageTitle.includes('Podcast')) return 'podcast-episode';
+  if (pageTitle.includes('Resource Library')) return 'library-resource';
+  if (pageTitle.includes('EGG Stories')) return 'egg-stories';
 }
 
-export const filteredList = (cards, tag, query, home, route, pageTitle) => cards.filter(
+export const filteredList = (cards, tag, query, route, home, pageTitle) => cards.filter(
   card => {
-    const contentTag = getContentTag(route) || toKebabCase(pageTitle.toLowerCase());
+    const contentTag = getContentTag(route, pageTitle) || toKebabCase(pageTitle.toLowerCase());
     // Don't show a card for the same post they're already viewing
     if (card.fields.title.toLowerCase().indexOf(pageTitle.toLowerCase()) > -1) {
       return false;
