@@ -43,7 +43,7 @@ export const getServerSideProps = async ({ params }) => {
   const podcastEpisode = postPages.find(
     page => page.fields.slug === params.episode,
   );
-  const cards = await fetchEntries({ content_type: 'featuretteBlock' });
+  const cards = await fetchEntries({ content_type: 'featuretteBlock', limit: 1000 });
 
   return {
     props: {

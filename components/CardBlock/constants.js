@@ -35,7 +35,6 @@ export const getBlockTitle = title => {
 }
 
 export const getContentTag = (route, pageTitle) => {
-  console.log(route, pageTitle);
   if (route.includes('blog')) return 'blog-post';
   if (route.includes('podcast')) return 'podcast-episode';
   if (route.includes('resource-library')) return 'library-resource';
@@ -58,6 +57,7 @@ export const filteredList = (cards, tag, query, route, home, pageTitle) => cards
     if (!home) {
       if (
         !card.metadata.tags.find(tagObj => {
+          //console.log(tagObj.sys.id);
           return (
             tagObj.sys.id.indexOf(contentTag) > -1 ||
             toKebabCase(tagObj.sys.id).indexOf(contentTag) > -1 ||
@@ -71,7 +71,6 @@ export const filteredList = (cards, tag, query, route, home, pageTitle) => cards
     }
     // If a tag / tab has been selected, add that filter
     if (tag) {
-      // console.log('selected tag', tag);
       if (
         !card.metadata.tags.find(tagObj => {
           return tagObj.sys.id.indexOf(tag) > -1;

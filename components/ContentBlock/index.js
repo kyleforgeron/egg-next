@@ -8,11 +8,15 @@ import style from './ContentBlock.module.scss';
 const ContentBlock = ({ contentBlock }) => {
   const router = useRouter();
   const story = router.pathname.includes('egg-stories');
+  const sectionPage = router.pathname.includes('[page]');
   const content = parse(
     documentToHtmlString(contentBlock.fields.content, richTextOptions),
   );
   return (
-    <section id={contentBlock.fields.sectionLink} className={!story && style["contentblock-wrapper"]}>
+    <section
+      id={contentBlock.fields.sectionLink}
+      className={!story && !sectionPage && style['contentblock-wrapper']}
+    >
       <div className="inner">
         <div className={style['post-content']}>{content}</div>
       </div>

@@ -22,7 +22,7 @@ export const getServerSideProps = async ({ params }) => {
   const postPages = await fetchEntries({ content_type: 'postPage' });
   const siteIdentity = await fetchEntries({ content_type: 'siteIdentity' });
   const blogPost = postPages.find(page => page.fields.slug === params.post);
-  const cards = await fetchEntries({ content_type: 'featuretteBlock' });
+  const cards = await fetchEntries({ content_type: 'featuretteBlock', limit: 1000 });
 
   return {
     props: {

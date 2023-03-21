@@ -22,7 +22,7 @@ export const getStaticProps = async () => {
   const page = pages
     .map(p => p.fields)
     .filter(page => toKebabCase(page.title) === 'home-page');
-  const cards = await fetchEntries({ content_type: 'featuretteBlock' });
+  const cards = await fetchEntries({ content_type: 'featuretteBlock', limit: 1000 });
 
   return {
     props: {
