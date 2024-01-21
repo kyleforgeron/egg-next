@@ -87,18 +87,8 @@ const BannerBlock = ({ bannerBlock, pageMeta, page, pageTitle, content }) => {
                 Listen to the Podcast
               </button>
             </Link>
-            <Link href="/#topics">
-              <button className={style['banner-button']}>Explore Topics</button>
-            </Link>
-            <Link href="/blog">
-              <button
-                className={classNames(
-                  style['banner-button'],
-                  style['banner-button--white'],
-                )}
-              >
-                New? Start Here
-              </button>
+            <Link href="/start-your-journey">
+              <button className={style['banner-button']}>Start Your Journey</button>
             </Link>
           </div>
         )}
