@@ -32,8 +32,7 @@ const CardBlock = ({ cards, pageTitle, postPage }) => {
 
   const cardToHtml = card => <Card key={card.sys.id} featuretteBlock={card} />;
   const output = !!filteredCards
-    ? filteredCards.map(card => cardToHtml(card))
-    : cards.map(item => cardToHtml(item));
+    ? filteredCards.map(card => cardToHtml(card)) : "loading...";
   return (
     <section className="cardblock-wrapper">
       <div className="inner">
