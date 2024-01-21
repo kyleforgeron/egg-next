@@ -17,7 +17,7 @@ const BannerBlock = ({ bannerBlock, pageMeta, page, pageTitle, content }) => {
     <header
       id={bannerBlock?.fields.sectionLink}
       className={classNames(style['banner-base'], {
-        [style['banner-base--home']]: ['Home Page', 'Blog'].includes(pageTitle),
+        [style['banner-base--home']]: ['Home Page'].includes(pageTitle),
       })}
       style={{
         backgroundImage: `url('${bannerBlock?.fields?.background?.fields.file.url}')`,
