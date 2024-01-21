@@ -45,6 +45,7 @@ export const getContentTag = (route, pageTitle) => {
   if (pageTitle.includes('EGG Stories')) return 'egg-stories';
   if (pageTitle.includes('Special Thanks')) return 'eggheads-advisory-board';
   if (pageTitle.includes('Start Your Journey')) return 'start-your-journey';
+  if (pageTitle.includes('Who We Are')) return 'about';
 }
 
 export const filteredList = (cards, tag, query, route, home, pageTitle) => cards.filter(
