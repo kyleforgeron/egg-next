@@ -32,8 +32,8 @@ export const footerColumns = [
     title: 'About Us',
     links: [
       {
-        text: 'About Your Hosts',
-        href: '/about-your-hosts',
+        text: 'Who We Are',
+        href: '/who-we-are',
       },
       {
         text: 'Special Thanks',

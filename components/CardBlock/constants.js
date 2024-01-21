@@ -51,7 +51,7 @@ export const filteredList = (cards, tag, query, route, home, pageTitle) => cards
   card => {
     const contentTag = getContentTag(route, pageTitle) || toKebabCase(pageTitle.toLowerCase());
     // Don't show a card for the same post they're already viewing
-    if (card.fields.title.toLowerCase().indexOf(pageTitle.toLowerCase()) > -1) {
+    if (card.fields.title.toLowerCase() === pageTitle.toLowerCase()) {
       return false;
     } 
     // If not on the home page, filter by the relevant topic or content type of the current section page
@@ -90,8 +90,11 @@ export const filteredList = (cards, tag, query, route, home, pageTitle) => cards
       return true;
     return false;
   }
+  // Sort based on most recently-posted content
+).sort((a,b) => {
+  return new Date(b.fields.datePosted) - new Date(a.fields.datePosted)
+}
   // Finally, move promoted cards to the front of the array
 ).sort((a,b) => {
-  // if (a.fields.promoted || b.fields.promoted) console.log('sorting by promoted', a.fields.title, a.fields.promoted, b.fields.title, b.fields.promoted);
   return b.fields.promoted - a.fields.promoted;
 });

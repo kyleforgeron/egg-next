@@ -92,38 +92,6 @@ const BannerBlock = ({ bannerBlock, pageMeta, page, pageTitle, content }) => {
             </Link>
           </div>
         )}
-        {bannerBlock?.fields.sectionTitle.indexOf('Blog Posts') > -1 && (
-          <div
-            className={classNames(
-              style['banner-actions'],
-              style['banner-actions--blog'],
-            )}
-          >
-            <Link href="/blog/becoming-an-international-educator">
-              <button
-                className={classNames(
-                  style['banner-button'],
-                  style['banner-button--white'],
-                )}
-              >
-                Start Here
-              </button>
-            </Link>
-            <Link href="/blog/perks-of-teaching-internationally">
-              <button className={style['banner-button']}>Perks</button>
-            </Link>
-            <Link href="/blog/what-to-consider-in-schools-and-countries-when-recruiting">
-              <button
-                className={classNames(
-                  style['banner-button'],
-                  style['banner-button--white'],
-                )}
-              >
-                Considerations
-              </button>
-            </Link>
-          </div>
-        )}
       </h3>
       <span id="topics" />
     </header>

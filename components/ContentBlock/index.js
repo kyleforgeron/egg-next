@@ -9,8 +9,26 @@ const ContentBlock = ({ contentBlock }) => {
   const router = useRouter();
   const story = router.pathname.includes('egg-stories');
   const sectionPage = router.pathname.includes('[page]');
+  const addTargetBlank = html => {
+    // Regular expression to find <a> tags with href attribute
+    const pattern = /<a\s+([^>]*?href=["'][^"']*["'][^>]*)>/gi;
+
+    // Replacement function to add target="_blank" if href doesn't contain 'educatorsgoingglobal.com'
+    const replacement = (match, content) => {
+      if (!/href=["'][^"']*educatorsgoingglobal\.com/.test(content)) {
+        return `<a ${content} target="_blank">`;
+      }
+      return match;
+    };
+
+    // Using string.replace to replace the pattern
+    return html.replace(pattern, replacement);
+  };
+
   const content = parse(
-    documentToHtmlString(contentBlock.fields.content, richTextOptions),
+    addTargetBlank(
+      documentToHtmlString(contentBlock.fields.content, richTextOptions),
+    ),
   );
   return (
     <section

@@ -39,7 +39,7 @@ const CardBlock = ({ cards, pageTitle, postPage }) => {
       <div className="inner">
         {postPage ? (
           <h2 className={style['cardBlock-header']}>
-            Related {getBlockTitle(route)}
+            More {getBlockTitle(route)}
           </h2>
         ) : (
           !['Special Thanks', 'About Your Hosts'].includes(
