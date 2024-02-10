@@ -4,11 +4,13 @@ import { fetchEntries, getComponent } from 'utils';
 import { Layout, CardBlock, FooterBlock } from 'components';
 
 const Post = ({ blogPost, pages, siteIdentity, cards }) => {
+  const description = blogPost.fields.description;
+  const keywords = blogPost.fields.keywords;
   return (
     <>
       <Layout
         title={`Educators Going Global - ${blogPost.fields.title}`}
-        {...{ pages, siteIdentity }}
+        {...{ description, keywords, pages, siteIdentity }}
       />
       {blogPost.fields.components.map(item => getComponent(blogPost.fields.title, item, cards, blogPost, blogPost.metadata))}
       <CardBlock pageTitle={blogPost.fields.title} postPage {...{ cards }} />

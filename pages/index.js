@@ -5,9 +5,11 @@ import { FooterBlock, Layout } from 'components';
 
 const Home = ({ pages, siteIdentity, page, cards }) => {
   const pageTitle = page[0].title;
+  const description = page[0].description;
+  const keywords = page[0].keywords;
   return (
     <>
-      <Layout title="Educators Going Global" {...{ pages, siteIdentity }} />
+      <Layout title="Educators Going Global" {...{ description, keywords, pages, siteIdentity }} />
       {page[0].components.map(item =>
         getComponent(pageTitle, item, cards, page[0], page[0].metadata),
       )}

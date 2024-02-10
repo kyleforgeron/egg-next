@@ -11,11 +11,13 @@ const Episode = ({ podcastEpisode, pages, siteIdentity, cards }) => {
     </div>,
     ...podcastEpisode.fields.components.slice(1),
   ];
+  const description = podcastEpisode.fields.description;
+  const keywords = podcastEpisode.fields.keywords;
   return (
     <>
       <Layout
         title={`Educators Going Global - ${podcastEpisode.fields.title}`}
-        {...{ pages, siteIdentity }}
+        {...{ description, keywords, pages, siteIdentity }}
       />
       {components.map(item =>
         getComponent(

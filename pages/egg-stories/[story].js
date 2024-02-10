@@ -5,11 +5,13 @@ import { fetchEntries, getComponent } from 'utils';
 import { Layout, FooterBlock, CardBlock } from 'components';
 
 const Story = ({ eggStory, pages, siteIdentity, cards }) => {
+  const description = eggStory.fields.description;
+  const keywords = eggStory.fields.keywords;
   return (
     <>
       <Layout
         title={`Educators Going Global - ${eggStory.fields.title}`}
-        {...{ pages, siteIdentity }}
+        {...{ description, keywords, pages, siteIdentity }}
       />
       {eggStory.fields.components.map(item =>
         getComponent(eggStory.fields.title, item, cards, eggStory, eggStory.metadata),
