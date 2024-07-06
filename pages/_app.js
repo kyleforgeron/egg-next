@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import Head from 'next/head';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import 'styles/main.scss';
 
 const MyApp = ({ Component, pageProps }) => {
@@ -16,6 +17,7 @@ const MyApp = ({ Component, pageProps }) => {
       </Head>
       <div>
         <Component {...pageProps} />
+        <GoogleAnalytics gaId="G-FSCTTWLYG3" />
       </div>
     </>
   );

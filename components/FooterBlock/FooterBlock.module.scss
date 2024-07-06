@@ -59,9 +59,9 @@
       margin-right: 16px;
       width: 375px;
 
-			@media screen and (max-width: 1024px) {
-				width: 250px;
-			}
+      @media screen and (max-width: 1024px) {
+        width: 250px;
+      }
 
       @media screen and (max-width: 768px) {
         width: calc(100% - 28px);
@@ -104,6 +104,13 @@
       > * {
         margin-bottom: 16px;
       }
+    }
+
+    &--button {
+      padding: 0px;
+      background: $color-white;
+      border-radius: 8px;
+      max-height: 38px;
     }
   }
 }

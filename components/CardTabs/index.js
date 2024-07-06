@@ -29,7 +29,7 @@ const CardTabs = ({ home, categoryPage, tag, setTag, query, setQuery }) => {
             buttons={buttons(categoryPage)}
             {...{ query, setQuery }}
           />
-          </div>
+        </div>
       </nav>
     </>
   );

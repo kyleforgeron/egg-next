@@ -20,19 +20,19 @@ const CardBlock = ({ cards, pageTitle, postPage }) => {
   ].includes(pageTitle);
   const [filteredCards, setFilteredCards] = useState(null);
   const [query, setQuery] = useState('');
-  const [tag, setTag] = useState(home ? 'schoolLife' : '');
+  const [tag, setTag] = useState('');
   const router = useRouter();
   const route = router.pathname;
 
   useEffect(() => {
-    if (!query && !tag && home) return setFilteredCards(null);
     const cardList = filteredList(cards, tag, query, route, home, pageTitle);
     setFilteredCards(home || postPage ? cardList.splice(0, 3) : cardList);
   }, [cards, query, tag]); //eslint-disable-line
 
   const cardToHtml = card => <Card key={card.sys.id} featuretteBlock={card} />;
   const output = !!filteredCards
-    ? filteredCards.map(card => cardToHtml(card)) : "loading...";
+    ? filteredCards.map(card => cardToHtml(card))
+    : 'loading...';
   return (
     <section className="cardblock-wrapper">
       <div className="inner">
@@ -41,16 +41,14 @@ const CardBlock = ({ cards, pageTitle, postPage }) => {
             More {getBlockTitle(route)}
           </h2>
         ) : (
-          !['Special Thanks', 'About Your Hosts'].includes(
-            pageTitle,
-          ) && (
+          !['Special Thanks', 'About Your Hosts'].includes(pageTitle) && (
             <CardTabs
               {...{ home, categoryPage, tag, setTag, query, setQuery }}
             />
           )
         )}
         <section className={style.cardBlock}>{output}</section>
-        {home && (
+        {home && !!tag && (
           <div className={style['cardBlock-more']}>
             <Link href={`/${toKebabCase(tag)}`}>
               <span className={style['cardBlock-more-button']}>

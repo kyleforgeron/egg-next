@@ -1,10 +1,9 @@
-
-import * as Google from 'assets/google-podcasts.svg';
 import * as Apple from 'assets/apple-podcasts.svg';
 import * as Spotify from 'assets/spotify.svg';
 import * as Linkedin from 'assets/linkedin.svg';
 import * as Facebook from 'assets/facebook.svg';
 import * as Instagram from 'assets/instagram.svg';
+import * as Youtube from 'assets/youtube-music.svg';
 
 export const footerColumns = [
   {
@@ -70,11 +69,6 @@ export const footerColumns = [
 
 export const socials = [
   {
-    alt: 'Google Podcasts',
-    src: Google,
-    href: 'https://podcasts.google.com/feed/aHR0cHM6Ly9mZWVkcy5idXp6c3Byb3V0LmNvbS8yMDA2MDYyLnJzcw',
-  },
-  {
     alt: 'Apple Podcasts',
     src: Apple,
     href: 'https://podcasts.apple.com/us/podcast/educators-going-global/id1657501409',
@@ -83,6 +77,11 @@ export const socials = [
     alt: 'Spotify',
     src: Spotify,
     href: 'https://open.spotify.com/show/7BvZVshefIw4kAt3dOCTz8',
+  },
+  {
+    alt: 'Youtube Music',
+    src: Youtube,
+    href: 'https://www.youtube.com/@educatorsgoingglobal/podcasts',
   },
   {
     alt: 'Linkedin',
@@ -99,4 +98,4 @@ export const socials = [
     src: Instagram,
     href: 'https://www.instagram.com/educatorsgoingglobal/',
   },
-]
+];

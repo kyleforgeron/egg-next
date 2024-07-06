@@ -40,7 +40,7 @@ const Card = ({ featuretteBlock }) => {
   return (
     <div className={style['card']}>
       <div className={style['card-border']}>
-        {(featuretteBlock.fields.slug || featuretteBlock.fields.externalLink) ? (
+        {featuretteBlock.fields.slug || featuretteBlock.fields.externalLink ? (
           <Link
             href={
               cardType === 'podcastEpisode' ||
@@ -48,12 +48,14 @@ const Card = ({ featuretteBlock }) => {
               cardType === 'eggStories'
                 ? `/${slug(cardType)}/${featuretteBlock.fields.slug}`
                 : cardType === 'libraryResource'
-                ? featuretteBlock.fields.slug || featuretteBlock.fields.externalLink || ''
+                ? featuretteBlock.fields.slug ||
+                  featuretteBlock.fields.externalLink ||
+                  ''
                 : ''
             }
             passHref
           >
-            <a
+            <span
               className={style['card-image']}
               style={{
                 backgroundImage: `url('https:${featuretteBlock.fields.image.fields.file.url}')`,
@@ -70,6 +72,11 @@ const Card = ({ featuretteBlock }) => {
           />
         )}
         <div className={style['card-content']}>
+          {!!featuretteBlock.fields.eyebrowText && (
+            <p className={style['card-eyebrow']}>
+              {featuretteBlock.fields.eyebrowText}
+            </p>
+          )}
           <h3 className={style['card-title']}>
             {featuretteBlock.fields.title}
           </h3>
@@ -87,7 +94,8 @@ const Card = ({ featuretteBlock }) => {
           {cardType === 'podcastEpisode' && (
             <Audio src={featuretteBlock.fields.episodeSrc} />
           )}
-          {(featuretteBlock.fields.slug || featuretteBlock.fields.externalLink) && (
+          {(featuretteBlock.fields.slug ||
+            featuretteBlock.fields.externalLink) && (
             <div className={style['card-details']}>
               <Link
                 href={
@@ -96,12 +104,14 @@ const Card = ({ featuretteBlock }) => {
                   cardType === 'eggStories'
                     ? `/${slug(cardType)}/${featuretteBlock.fields.slug}`
                     : cardType === 'libraryResource'
-                    ? featuretteBlock.fields.slug || featuretteBlock.fields.externalLink || ''
+                    ? featuretteBlock.fields.slug ||
+                      featuretteBlock.fields.externalLink ||
+                      ''
                     : ''
                 }
                 passHref
               >
-                <a
+                <span
                   className={style['card-more-button']}
                   target={cardType === 'libraryResource' ? '_blank' : ''}
                 >
@@ -117,7 +127,7 @@ const Card = ({ featuretteBlock }) => {
                       : ''}
                   </span>
                   <Image src={Open} alt="open-page" />
-                </a>
+                </span>
               </Link>
             </div>
           )}

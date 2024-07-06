@@ -61,6 +61,12 @@
     padding: 16px;
   }
 
+  &-eyebrow {
+    text-transform: uppercase;
+    color: $color-primary;
+    font-weight: 700;
+  }
+
   &-title {
     margin: 0px;
     margin-bottom: 8px;

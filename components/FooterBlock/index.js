@@ -11,9 +11,10 @@ const FooterBlock = () => {
       <div className="inner">
         <div className={isMobile ? style.block : style.flex}>
           {footerColumns.map(column => (
-            <div key={column.title} className={classNames(style['footer-column'], {
-
-            })}>
+            <div
+              key={column.title}
+              className={classNames(style['footer-column'], {})}
+            >
               <h4 className={style['footer-column-title']}>{column.title}</h4>
               {column.links.map(link => (
                 <h5 key={link.text}>
@@ -23,22 +24,40 @@ const FooterBlock = () => {
             </div>
           ))}
           <div className={style['footer-column']}>
-              <h4 className={style['footer-column-title']}>Subscribe to our Newsletter for Updates</h4>
-              <div className={style['footer-subscribe']}>
-                <a href="https://subscribepage.io/Educators_Going_Global_Newsletter" style={{ margin: "0px auto" }} target="_blank" rel="noopener noreferrer">
-                  <button type="button" className={style['footer-subscribe-button']}>SIGN ME UP!</button>
-                </a>
-              </div>
+            <h4 className={style['footer-column-title']}>
+              Subscribe to our Newsletter for Updates
+            </h4>
+            <div className={style['footer-subscribe']}>
+              <a
+                href="https://subscribepage.io/Educators_Going_Global_Newsletter"
+                style={{ margin: '0px auto' }}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <button
+                  type="button"
+                  className={style['footer-subscribe-button']}
+                >
+                  SIGN ME UP!
+                </button>
+              </a>
             </div>
+          </div>
         </div>
         <div className={style['footer-divider']} />
-          <div className={style['footer-socials']}>
-            {socials.map(link => (
-              <a href={link.href} key={link.alt} target="_blank" rel="noopener noreferrer">
-                <Image src={link.src} alt={link.alt} />
-              </a>
-            ))}
-          </div>
+        <div className={style['footer-socials']}>
+          {socials.map(link => (
+            <a
+              href={link.href}
+              key={link.alt}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={style['footer-socials--button']}
+            >
+              <Image src={link.src} alt={link.alt} />
+            </a>
+          ))}
+        </div>
       </div>
     </section>
   );
