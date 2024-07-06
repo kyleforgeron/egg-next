@@ -33,7 +33,7 @@ const ContentBlock = ({ contentBlock }) => {
   return (
     <section
       id={contentBlock.fields.sectionLink}
-      className={!story && !sectionPage && style['contentblock-wrapper']}
+      className={!story && !sectionPage ? style['contentblock-wrapper'] : ''}
     >
       <div className="inner">
         <div className={style['post-content']}>{content}</div>
