@@ -36,7 +36,7 @@ const Card = ({ featuretteBlock }) => {
       richTextOptions,
     ),
   );
-  useEffect(() => setContent(shortDescription), [shortDescription]);
+  useEffect(() => setContent(shortDescription), []);
   return (
     <div className={style['card']}>
       <div className={style['card-border']}>
