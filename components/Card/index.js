@@ -98,6 +98,7 @@ const Card = ({ featuretteBlock }) => {
             featuretteBlock.fields.externalLink) && (
             <div className={style['card-details']}>
               <Link
+                target={cardType === 'libraryResource' ? '_blank' : ''}
                 href={
                   cardType === 'podcastEpisode' ||
                   cardType === 'blogPost' ||
@@ -111,10 +112,7 @@ const Card = ({ featuretteBlock }) => {
                 }
                 passHref
               >
-                <span
-                  className={style['card-more-button']}
-                  target={cardType === 'libraryResource' ? '_blank' : ''}
-                >
+                <span className={style['card-more-button']}>
                   <span>
                     {cardType === 'podcastEpisode'
                       ? 'Episode page'
