@@ -42,6 +42,7 @@ const Card = ({ featuretteBlock }) => {
       <div className={style['card-border']}>
         {featuretteBlock.fields.slug || featuretteBlock.fields.externalLink ? (
           <Link
+            target={cardType === 'libraryResource' ? '_blank' : ''}
             href={
               cardType === 'podcastEpisode' ||
               cardType === 'blogPost' ||
@@ -60,7 +61,6 @@ const Card = ({ featuretteBlock }) => {
               style={{
                 backgroundImage: `url('https:${featuretteBlock.fields.image.fields.file.url}')`,
               }}
-              target={cardType === 'libraryResource' ? '_blank' : ''}
             />
           </Link>
         ) : (
