@@ -4,6 +4,7 @@ import { fetchEntries, getComponent } from 'utils';
 import { Layout, CardBlock, FooterBlock } from 'components';
 
 const Post = ({ blogPost, pages, siteIdentity, cards }) => {
+  if (!blogPost) return null;
   const description = blogPost.fields.description;
   const keywords = blogPost.fields.keywords;
   return (
@@ -12,7 +13,15 @@ const Post = ({ blogPost, pages, siteIdentity, cards }) => {
         title={`Educators Going Global - ${blogPost.fields.title}`}
         {...{ description, keywords, pages, siteIdentity }}
       />
-      {blogPost.fields.components.map(item => getComponent(blogPost.fields.title, item, cards, blogPost, blogPost.metadata))}
+      {blogPost.fields.components.map(item =>
+        getComponent(
+          blogPost.fields.title,
+          item,
+          cards,
+          blogPost,
+          blogPost.metadata,
+        ),
+      )}
       <CardBlock pageTitle={blogPost.fields.title} postPage {...{ cards }} />
       <FooterBlock />
     </>
@@ -21,14 +30,20 @@ const Post = ({ blogPost, pages, siteIdentity, cards }) => {
 
 export const getServerSideProps = async ({ params }) => {
   const pages = await fetchEntries({ content_type: 'page' });
-  const postPages = await fetchEntries({ content_type: 'postPage' });
+  const postPages = await fetchEntries({
+    content_type: 'postPage',
+    limit: 1000,
+  });
   const siteIdentity = await fetchEntries({ content_type: 'siteIdentity' });
   const blogPost = postPages.find(page => page.fields.slug === params.post);
-  const cards = await fetchEntries({ content_type: 'featuretteBlock', limit: 1000 });
+  const cards = await fetchEntries({
+    content_type: 'featuretteBlock',
+    limit: 1000,
+  });
 
   return {
     props: {
-      blogPost,
+      blogPost: blogPost ?? null,
       pages,
       siteIdentity,
       cards,
