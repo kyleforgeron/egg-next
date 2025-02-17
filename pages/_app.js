@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import 'styles/main.scss';
+import { GoogleTagManager } from '@next/third-parties/google';
 
 const MyApp = ({ Component, pageProps }) => {
   return (
@@ -13,6 +14,7 @@ const MyApp = ({ Component, pageProps }) => {
           name="viewport"
           content="width=device-width, initial-scale=1.0, user-scalable=no"
         />
+        <GoogleTagManager gtmId="G-FSCTTWLYG3" />
       </Head>
       <div>
         <Component {...pageProps} />

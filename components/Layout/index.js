@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { NavBar } from 'components';
-import { GoogleAnalytics } from '@next/third-parties/google';
+import { GoogleTagManager } from '@next/third-parties/google';
 
 const Layout = ({ title, description, keywords, pages, siteIdentity }) => {
   return (
@@ -19,7 +19,7 @@ const Layout = ({ title, description, keywords, pages, siteIdentity }) => {
             'international teaching, international education, international teacher recruiting, international teacher recruitment, expat, expat teacher, teacher finances, travel while you teach, travel teaching'
           }
         />
-        <GoogleAnalytics gaId="G-FSCTTWLYG3" />
+        <GoogleTagManager gtmId="G-FSCTTWLYG3" />
       </Head>
       <NavBar {...{ pages, siteIdentity }} />
     </>
