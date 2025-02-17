@@ -19,7 +19,6 @@ const Layout = ({ title, description, keywords, pages, siteIdentity }) => {
             'international teaching, international education, international teacher recruiting, international teacher recruitment, expat, expat teacher, teacher finances, travel while you teach, travel teaching'
           }
         />
-        <GoogleTagManager gtmId="G-FSCTTWLYG3" />
       </Head>
       <NavBar {...{ pages, siteIdentity }} />
     </>

@@ -14,7 +14,6 @@ const MyApp = ({ Component, pageProps }) => {
           name="viewport"
           content="width=device-width, initial-scale=1.0, user-scalable=no"
         />
-        <GoogleTagManager gtmId="G-FSCTTWLYG3" />
       </Head>
       <div>
         <Component {...pageProps} />
