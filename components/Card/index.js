@@ -91,9 +91,10 @@ const Card = ({ featuretteBlock }) => {
             </i>
             <div>{content}</div>
           </div>
-          {cardType === 'podcastEpisode' && (
+          {/* No longer allow loading podcast episodes directly on cards
+          cardType === 'podcastEpisode' && (
             <Audio src={featuretteBlock.fields.episodeSrc} />
-          )}
+          )*/}
           {(featuretteBlock.fields.slug ||
             featuretteBlock.fields.externalLink) && (
             <div className={style['card-details']}>
@@ -115,11 +116,11 @@ const Card = ({ featuretteBlock }) => {
                 <span className={style['card-more-button']}>
                   <span>
                     {cardType === 'podcastEpisode'
-                      ? 'Episode page'
+                      ? 'Listen to this episode'
                       : cardType === 'blogPost'
                       ? 'Read this post'
                       : cardType === 'eggStories'
-                      ? 'Watch the video'
+                      ? 'Watch this story'
                       : cardType === 'libraryResource'
                       ? 'Get more information'
                       : ''}
