@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { NavBar } from 'components';
-import { GoogleTagManager } from '@next/third-parties/google';
 
 const Layout = ({ title, description, keywords, pages, siteIdentity }) => {
   return (

@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import 'styles/main.scss';
-import { GoogleTagManager } from '@next/third-parties/google';
 
 const MyApp = ({ Component, pageProps }) => {
   return (
