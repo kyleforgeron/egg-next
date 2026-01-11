@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import { fetchEntries, toKebabCase, getComponent } from 'utils';
 import { Layout, FooterBlock } from 'components';
+import NotFound from './404';
 
 const Page = ({ pages, siteIdentity, page, cards }) => {
+  if (!page) return <NotFound {...{ pages, siteIdentity }} />;
   const pageTitle = page[0].title;
   const description = page[0].description;
   const keywords = page[0].keywords;
@@ -33,12 +35,18 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  const pages = await fetchEntries({ content_type: 'page' });
-  const siteIdentity = await fetchEntries({ content_type: 'siteIdentity' });
+  const pages = await fetchEntries({ content_type: 'page', limit: 1000 });
+  const siteIdentity = await fetchEntries({
+    content_type: 'siteIdentity',
+    limit: 1000,
+  });
   const page = pages
     .map(p => p.fields)
     .filter(page => toKebabCase(page.title) === params.page);
-  const cards = await fetchEntries({ content_type: 'featuretteBlock', limit: 1000 });
+  const cards = await fetchEntries({
+    content_type: 'featuretteBlock',
+    limit: 1000,
+  });
 
   return {
     props: {

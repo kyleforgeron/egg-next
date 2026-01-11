@@ -11,7 +11,7 @@ const NotFound = ({ pages, siteIdentity }) => {
         {...{ pages, siteIdentity }}
       />
       <BannerBlock
-        title={`Sorry, we couldn't find that page!`}
+        pageTitle={`Sorry, we couldn't find that page. Please try again later or contact us!`}
         content={<Link href="/">Return home</Link>}
       />
       <FooterBlock />
@@ -20,7 +20,7 @@ const NotFound = ({ pages, siteIdentity }) => {
 };
 
 export const getStaticProps = async () => {
-  const pages = await fetchEntries({ content_type: 'page' });
+  const pages = await fetchEntries({ content_type: 'page', limit: 1000 });
   const siteIdentity = await fetchEntries({ content_type: 'siteIdentity' });
 
   return {

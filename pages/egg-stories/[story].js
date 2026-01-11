@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import parse from 'html-react-parser';
 import { fetchEntries, getComponent } from 'utils';
 import { Layout, FooterBlock, CardBlock } from 'components';
+import NotFound from 'pages/404';
 
 const Story = ({ eggStory, pages, siteIdentity, cards }) => {
+  if (!eggStory) return <NotFound {...{ pages, siteIdentity }} />;
   const description = eggStory.fields.description;
   const keywords = eggStory.fields.keywords;
   return (
@@ -14,7 +16,13 @@ const Story = ({ eggStory, pages, siteIdentity, cards }) => {
         {...{ description, keywords, pages, siteIdentity }}
       />
       {eggStory.fields.components.map(item =>
-        getComponent(eggStory.fields.title, item, cards, eggStory, eggStory.metadata),
+        getComponent(
+          eggStory.fields.title,
+          item,
+          cards,
+          eggStory,
+          eggStory.metadata,
+        ),
       )}
       <div className="inner" style={{ margin: '64px auto' }}>
         {parse(eggStory.fields.episodeSrc)}
@@ -26,11 +34,17 @@ const Story = ({ eggStory, pages, siteIdentity, cards }) => {
 };
 
 export const getServerSideProps = async ({ params }) => {
-  const pages = await fetchEntries({ content_type: 'page' });
-  const postPages = await fetchEntries({ content_type: 'postPage' });
+  const pages = await fetchEntries({ content_type: 'page', limit: 1000 });
+  const postPages = await fetchEntries({
+    content_type: 'postPage',
+    limit: 1000,
+  });
   const siteIdentity = await fetchEntries({ content_type: 'siteIdentity' });
   const eggStory = postPages.find(page => page.fields.slug === params.story);
-  const cards = await fetchEntries({ content_type: 'featuretteBlock', limit: 1000 });
+  const cards = await fetchEntries({
+    content_type: 'featuretteBlock',
+    limit: 1000,
+  });
 
   return {
     props: {

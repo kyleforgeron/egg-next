@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { fetchEntries, getComponent } from 'utils';
 import { Layout, CardBlock, FooterBlock } from 'components';
+import NotFound from 'pages/404';
 
 const Post = ({ blogPost, pages, siteIdentity, cards }) => {
-  if (!blogPost) return null;
+  if (!blogPost) return <NotFound {...{ pages, siteIdentity }} />;
   const description = blogPost.fields.description;
   const keywords = blogPost.fields.keywords;
   return (
@@ -29,7 +30,7 @@ const Post = ({ blogPost, pages, siteIdentity, cards }) => {
 };
 
 export const getServerSideProps = async ({ params }) => {
-  const pages = await fetchEntries({ content_type: 'page' });
+  const pages = await fetchEntries({ content_type: 'page', limit: 1000 });
   const postPages = await fetchEntries({
     content_type: 'postPage',
     limit: 1000,

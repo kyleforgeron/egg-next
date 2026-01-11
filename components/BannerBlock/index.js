@@ -52,7 +52,8 @@ const BannerBlock = ({ bannerBlock, pageMeta, page, pageTitle, content }) => {
       ) : (
         <div
           className={classNames(style['banner-title'], {
-            [style['banner-title--post']]: page?.sys?.contentType.sys.id === "postPage",
+            [style['banner-title--post']]:
+              page?.sys?.contentType.sys.id === 'postPage',
           })}
         >
           {pageMeta?.tags &&
@@ -65,7 +66,7 @@ const BannerBlock = ({ bannerBlock, pageMeta, page, pageTitle, content }) => {
                 );
               }
             })}
-          <h1>{bannerBlock?.fields.sectionTitle}</h1>
+          <h1>{bannerBlock?.fields.sectionTitle ?? pageTitle}</h1>
         </div>
       )}
       <h3
@@ -88,7 +89,9 @@ const BannerBlock = ({ bannerBlock, pageMeta, page, pageTitle, content }) => {
               </button>
             </Link>
             <Link href="/start-your-journey">
-              <button className={style['banner-button']}>Start Your Journey</button>
+              <button className={style['banner-button']}>
+                Start Your Journey
+              </button>
             </Link>
           </div>
         )}
@@ -103,12 +106,13 @@ BannerBlock.defaultProps = {
   pageTitle: '',
   content: null,
   bannerBlock: null,
+  title: '',
 };
 
 BannerBlock.propTypes = {
   bannerBlock: PropTypes.object,
   pageMeta: PropTypes.object,
-  title: PropTypes.string,
+  pageTitle: PropTypes.string,
   content: PropTypes.node,
 };
 
